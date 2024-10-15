@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_bottom_bottom_button">12sp</dimen>
+    <dimen name="margin_horizontal_in_container">12sp</dimen>
+    <dimen name="margin_bottom_between_text_input_and_button">16sp</dimen>
+    <dimen name="margin_bottom_between_text_input_and_text_input">8sp</dimen>
+    <dimen name="margin_text_view_login_title">32dp</dimen>
+</resources>
