@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/showProductFragment"
+        android:icon="@drawable/ic_show_product"
+        android:title="Ürün Görüntüle" />
+    <item
+        android:id="@+id/addProductFragment"
+        android:icon="@drawable/ic_add_product"
+        android:title="Ürün Ekle" />
+    <item
+        android:id="@+id/showStockFragment"
+        android:icon="@drawable/ic_show_stock"
+        android:title="Stok Görüntüle" />
+</menu>
