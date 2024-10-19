@@ -37,7 +37,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget =  JavaVersion.VERSION_11.toString()
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -63,6 +63,14 @@ dependencies {
     implementation(libs.firebase.firestore)
 
     implementation(libs.gson)
+
+    // region Barcode
+    implementation(libs.barcode.scanning)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.guava)
+    // endregion Barcode
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

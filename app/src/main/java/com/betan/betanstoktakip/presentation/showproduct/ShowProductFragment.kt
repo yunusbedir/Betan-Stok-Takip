@@ -1,5 +1,6 @@
 package com.betan.betanstoktakip.presentation.showproduct
 
+import android.Manifest
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
@@ -11,6 +12,7 @@ import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.extensions.orEmpty
 import com.betan.betanstoktakip.databinding.FragmentShowProductBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
@@ -31,6 +33,7 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
     private fun setupListeners() = with(binding) {
         textInputLayoutSearch.setEndIconOnClickListener {
             // show barcode screen
+            requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
 
         editTextSearch.setOnEditorActionListener { _, actionId, _ ->
@@ -55,6 +58,21 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
             viewModel.invoke(
                 ShowProductContract.Action.AddToCart
             )
+        }
+    }
+
+    override fun permissionResult(permission: String, isGranted: Boolean) {
+        super.permissionResult(permission, isGranted)
+        if (permission == Manifest.permission.CAMERA && isGranted) {
+            startBarcodeActivity()
+        }
+    }
+
+    override fun barcodeActivityResult(barcode: String?) {
+        super.barcodeActivityResult(barcode)
+        barcode?.let {
+            binding.editTextSearch.setText(it)
+            viewModel.invoke(ShowProductContract.Action.GetProduct(it))
         }
     }
 
