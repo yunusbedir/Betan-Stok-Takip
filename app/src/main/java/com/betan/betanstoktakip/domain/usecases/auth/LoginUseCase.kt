@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.domain.auth
+package com.betan.betanstoktakip.domain.usecases.auth
 
 import com.betan.betanstoktakip.core.base.domain.UseCase
 import com.betan.betanstoktakip.data.local.LocalRepository

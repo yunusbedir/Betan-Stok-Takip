@@ -1,7 +1,7 @@
 package com.betan.betanstoktakip.presentation.main
 
 import com.betan.betanstoktakip.core.base.BaseViewModel
-import com.betan.betanstoktakip.domain.auth.LogoutUseCase
+import com.betan.betanstoktakip.domain.usecases.auth.LogoutUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow

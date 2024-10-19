@@ -29,21 +29,6 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
         collect(viewModel.failState, ::collectFailState)
     }
 
-    private fun collectFailState(fail: String) {
-        context?.let { safeContext ->
-            AlertDialog.Builder(safeContext)
-                .setCancelable(true)
-                .setTitle("Uyarı")
-                .setMessage(fail)
-                .setPositiveButton(
-                    "Tamam"
-                ) { _, _ ->
-                }
-                .create()
-                .show()
-        }
-    }
-
     private fun setupListeners() {
         with(binding) {
             buttonLogin.click {
@@ -69,6 +54,5 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(
     }
 
     private fun goToNextScreen() {
-        findNavController().navigate(R.id.action_loginFragment_to_nav_graph_main)
     }
 }

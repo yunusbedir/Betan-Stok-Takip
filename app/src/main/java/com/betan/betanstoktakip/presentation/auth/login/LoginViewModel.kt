@@ -2,13 +2,12 @@ package com.betan.betanstoktakip.presentation.auth.login
 
 import com.betan.betanstoktakip.core.base.BaseViewModel
 import com.betan.betanstoktakip.data.local.LocalRepository
-import com.betan.betanstoktakip.domain.auth.LoginUseCase
+import com.betan.betanstoktakip.domain.usecases.auth.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import javax.inject.Inject
@@ -51,11 +50,11 @@ class LoginViewModel @Inject constructor(
             email = action.email,
             password = action.password
         )
-        if (action.email.isEmpty()){
+        if (action.email.isEmpty()) {
             _failState.trySend("Email alanı boş bırakılamaz")
             return
         }
-        if (action.password.isEmpty()){
+        if (action.password.isEmpty()) {
             _failState.trySend("Şifre alanı boş bırakılamaz")
             return
         }

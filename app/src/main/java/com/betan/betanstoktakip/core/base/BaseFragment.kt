@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
@@ -81,6 +82,21 @@ abstract class BaseFragment<VBinding : ViewBinding>(
             flow.collectLatest {
                 invoke.invoke(it)
             }
+        }
+    }
+
+    protected open fun collectFailState(fail: String) {
+        context?.let { safeContext ->
+            AlertDialog.Builder(safeContext)
+                .setCancelable(true)
+                .setTitle("Uyarı")
+                .setMessage(fail)
+                .setPositiveButton(
+                    "Tamam"
+                ) { _, _ ->
+                }
+                .create()
+                .show()
         }
     }
 }
