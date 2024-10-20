@@ -57,4 +57,9 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="ok">Tamam</string>
+    <string name="hint_product_name">Ürün Adı</string>
+    <string name="hint_stock_amount">Stok Adeti</string>
+    <string name="hint_purchase_price">Alış Fiyatı</string>
+    <string name="button_text_add_product">Ürünü Ekle</string>
+    <string name="hint_sale_price">Satış Fiyatı</string>
 </resources>

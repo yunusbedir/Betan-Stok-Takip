@@ -2,6 +2,9 @@ package com.betan.betanstoktakip.presentation.main
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.databinding.FragmentMainBinding
@@ -15,6 +18,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
     private val viewModel: MainViewModel by viewModels()
 
     override fun setupViews(savedInstanceState: Bundle?) {
+        setupNavController()
         setupListeners()
     }
 
@@ -26,5 +30,13 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
         binding.textViewLogout.click {
             viewModel.invoke(MainContract.Action.Logout)
         }
+    }
+
+    private fun setupNavController() {
+        val navHostFragment =
+            childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        binding.bottomNavigationView.setupWithNavController(navController)
+
     }
 }

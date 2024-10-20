@@ -10,4 +10,9 @@
         android:name="com.betan.betanstoktakip.presentation.showproduct.ShowProductFragment"
         android:label="fragment_show_product"
         tools:layout="@layout/fragment_show_product" />
+    <fragment
+        android:id="@+id/addProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.addproduct.AddProductFragment"
+        android:label="fragment_add_product"
+        tools:layout="@layout/fragment_add_product" />
 </navigation>

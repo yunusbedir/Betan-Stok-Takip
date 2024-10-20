@@ -21,4 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Betan Stok Takip"
 include(":app")
- 
+include(":biometric")
