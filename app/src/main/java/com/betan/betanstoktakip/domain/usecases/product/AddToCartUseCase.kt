@@ -20,9 +20,10 @@ class AddToCartUseCase @Inject constructor(
                     name = params.name,
                     amount = params.amount,
                     salePrice = params.salePrice,
-                    totalPrice = params.totalPrice,
+                    stockAmount = params.stockAmount,
                 )
             )
+            localRepository.cartProductList = newList
         } else
             throw Exception("Bu ürün zaten sepette bulunmaktadır.")
     }
@@ -32,6 +33,7 @@ class AddToCartUseCase @Inject constructor(
         val name: String,
         val amount: Int,
         val salePrice: Double,
-        val totalPrice: Double
+        val totalPrice: Double,
+        val stockAmount: Int,
     )
 }

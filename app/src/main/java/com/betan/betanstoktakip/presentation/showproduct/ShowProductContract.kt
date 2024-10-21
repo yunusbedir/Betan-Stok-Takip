@@ -7,11 +7,12 @@ object ShowProductContract {
             val barcode: String
         ) : Action
 
-        data class ChangedAmount(
-            val amount: Int?
-        ) : Action
-
         data object AddToCart : Action
+
+        data object PlusCartProduct : Action
+
+        data object MinusCartProduct : Action
+
     }
 
     data class UiState(
@@ -20,7 +21,9 @@ object ShowProductContract {
         val stockAmount: Int = 0,
         val oneAmountPrice: Double = 0.0,
         val amount: Int = 1,
-        val totalPrice: Double = 0.0
-    )
+    ) {
+        val totalPrice: Double
+            get() = amount * oneAmountPrice
+    }
 
 }

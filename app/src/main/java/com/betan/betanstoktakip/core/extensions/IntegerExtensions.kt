@@ -5,5 +5,5 @@ fun Int?.orZero(): Int {
 }
 
 fun Any?.toIntOrZero(): Int {
-    return toString().toIntOrNull() ?: 0
+    return toString().toDoubleOrNull()?.toInt() ?: 0
 }

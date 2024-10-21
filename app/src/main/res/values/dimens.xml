@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_bottom_bottom_button">12sp</dimen>
-    <dimen name="margin_horizontal_in_container">12sp</dimen>
-    <dimen name="margin_bottom_between_text_input_and_button">16sp</dimen>
-    <dimen name="margin_bottom_between_text_input_and_text_input">8sp</dimen>
+    <dimen name="margin_bottom_bottom_button">12dp</dimen>
+    <dimen name="margin_horizontal_in_container">12dp</dimen>
+    <dimen name="margin_bottom_between_text_input_and_button">16dp</dimen>
+    <dimen name="margin_bottom_between_text_input_and_text_input">8dp</dimen>
     <dimen name="margin_text_view_login_title">32dp</dimen>
     <dimen name="height_top_bar">64dp</dimen>
     <dimen name="padding_horizontal_top_bar">16dp</dimen>
     <dimen name="margin_horizontal_text_view_in_top_bar">32dp</dimen>
-    <dimen name="margin_top_for_top">12sp</dimen>
-    <dimen name="margin_standard">8sp</dimen>
+    <dimen name="margin_top_for_top">12dp</dimen>
+    <dimen name="margin_standard">8dp</dimen>
+    <dimen name="margin_horizontal_in_container_recycler_item">8dp</dimen>
 </resources>

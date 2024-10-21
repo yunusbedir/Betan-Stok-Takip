@@ -22,8 +22,35 @@ class ShowProductViewModel @Inject constructor(
     fun invoke(action: ShowProductContract.Action) {
         when (action) {
             is ShowProductContract.Action.GetProduct -> getProduct(action)
-            is ShowProductContract.Action.ChangedAmount -> changedAmount(action)
             is ShowProductContract.Action.AddToCart -> addToCart()
+            ShowProductContract.Action.MinusCartProduct -> minusCartProduct()
+            ShowProductContract.Action.PlusCartProduct -> plusCartProduct()
+        }
+    }
+
+    private fun plusCartProduct() {
+        _uiState.update { state ->
+            val amount = state.amount + 1
+            if (amount >= state.stockAmount) {
+                _failState.trySend("Maximum ${state.stockAmount} Adet ürün alabilirsin.")
+                state
+            } else
+                state.copy(
+                    amount = amount
+                )
+        }
+    }
+
+    private fun minusCartProduct() {
+        _uiState.update { state ->
+            val amount = state.amount - 1
+            if (amount <= 0) {
+                _failState.trySend("Minimum 1 Adet ürün ekleyebilirsin.")
+                state
+            } else
+                state.copy(
+                    amount = amount
+                )
         }
     }
 
@@ -39,22 +66,6 @@ class ShowProductViewModel @Inject constructor(
                     stockAmount = result.stockAmount,
                     oneAmountPrice = result.salePrice,
                     amount = 1,
-                    totalPrice = result.salePrice,
-                )
-            }
-        }
-    }
-
-    private fun changedAmount(action: ShowProductContract.Action.ChangedAmount) {
-        _uiState.update { state ->
-            val amount = action.amount ?: 1
-            if (amount > state.stockAmount) {
-                _failState.trySend("Stok $amount Adet ürün bulunmamaktadır.\nMaximum ${state.stockAmount} Adet ürün alabilirsin.")
-                state
-            } else {
-                state.copy(
-                    amount = amount,
-                    totalPrice = state.oneAmountPrice * amount
                 )
             }
         }
@@ -68,6 +79,7 @@ class ShowProductViewModel @Inject constructor(
                 amount = state.amount,
                 salePrice = state.oneAmountPrice,
                 totalPrice = state.totalPrice,
+                stockAmount = state.stockAmount
             )
             addToCartUseCase.action(params) {
                 _uiState.update {

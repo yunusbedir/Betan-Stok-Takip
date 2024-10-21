@@ -10,6 +10,7 @@ import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.extensions.orEmpty
 import com.betan.betanstoktakip.core.extensions.toDoubleOrZero
 import com.betan.betanstoktakip.core.extensions.toIntOrZero
+import com.betan.betanstoktakip.core.helper.viewLifecycleLazy
 import com.betan.betanstoktakip.databinding.FragmentAddProductBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.sn.biometric.Biometric
@@ -23,7 +24,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
 
     private val viewModel: AddProductViewModel by viewModels()
 
-    private val biometric: Biometric by lazy {
+    private val biometric: Biometric by viewLifecycleLazy {
         Biometric(requireContext())
     }
 

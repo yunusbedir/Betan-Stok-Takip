@@ -66,7 +66,7 @@
             android:layout_marginBottom="@dimen/margin_standard"
             android:columnCount="2"
             android:rowCount="2"
-            app:layout_constraintBottom_toTopOf="@id/textInputLayoutAmount"
+            app:layout_constraintBottom_toTopOf="@id/textInputTotalPrice"
             app:layout_constraintTop_toBottomOf="@id/textViewTitle">
 
             <TextView
@@ -107,51 +107,58 @@
         </GridLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayoutAmount"
-            android:layout_width="match_parent"
+            android:id="@+id/textInputTotalPrice"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/margin_standard"
-            android:hint="@string/amount"
-            app:layout_constraintBottom_toTopOf="@id/containerTotalPrice">
+            android:enabled="false"
+            android:hint="@string/hint_total_price"
+            app:layout_constraintBottom_toTopOf="@id/buttonAddToCart"
+            app:layout_constraintEnd_toStartOf="@id/containerAmount"
+            app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextAmount"
+                android:id="@+id/editTextTotalPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="1234567890"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:text="@string/_1" />
+                android:text="@string/_0" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
-            android:id="@+id/containerTotalPrice"
-            android:layout_width="match_parent"
+            android:id="@+id/containerAmount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/margin_standard"
-            android:background="@drawable/bg_item_view"
-            android:gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+            android:layout_marginVertical="@dimen/margin_standard"
             android:orientation="horizontal"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="8dp"
-            app:layout_constraintBottom_toTopOf="@id/buttonAddToCart">
+            app:layout_constraintBottom_toBottomOf="@id/textInputTotalPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textInputTotalPrice"
+            app:layout_constraintTop_toTopOf="@id/textInputTotalPrice">
+
+            <View
+                android:id="@+id/buttonPlus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_circle_add"
+                android:gravity="center" />
 
             <TextView
+                android:id="@+id/textViewAmount"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/total_price"
-                android:textSize="22sp"
-                app:layout_constraintBottom_toTopOf="@id/buttonAddToCart" />
+                android:layout_height="40dp"
+                android:background="@null"
+                android:gravity="center"
+                android:minWidth="40dp"
+                android:textAppearance="@style/Typography.Basic.XLarge.Strong"
+                tools:text="0" />
 
-            <TextView
-                android:id="@+id/textViewTotalPrice"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toTopOf="@id/buttonAddToCart"
-                tools:text="250 TL" />
+            <View
+                android:id="@+id/buttonMinus"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/ic_circle_remove"
+                android:gravity="center" />
 
         </LinearLayout>
 

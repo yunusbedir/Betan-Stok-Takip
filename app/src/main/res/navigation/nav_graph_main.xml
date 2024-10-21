@@ -15,4 +15,9 @@
         android:name="com.betan.betanstoktakip.presentation.addproduct.AddProductFragment"
         android:label="fragment_add_product"
         tools:layout="@layout/fragment_add_product" />
+    <fragment
+        android:id="@+id/shoppingCartFragment"
+        android:name="com.betan.betanstoktakip.presentation.shoppingcart.ShoppingCartFragment"
+        android:label="fragment_shopping_cart"
+        tools:layout="@layout/fragment_shopping_cart" />
 </navigation>

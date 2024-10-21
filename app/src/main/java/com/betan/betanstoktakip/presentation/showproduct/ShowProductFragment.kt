@@ -4,12 +4,14 @@ import android.Manifest
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
+import com.betan.betanstoktakip.core.extensions.hideKeyboard
 import com.betan.betanstoktakip.core.extensions.orEmpty
+import com.betan.betanstoktakip.core.extensions.putMoneyDots
+import com.betan.betanstoktakip.core.extensions.toMoney
 import com.betan.betanstoktakip.databinding.FragmentShowProductBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +34,6 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
 
     private fun setupListeners() = with(binding) {
         textInputLayoutSearch.setEndIconOnClickListener {
-            // show barcode screen
             requestPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
 
@@ -43,15 +44,17 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
                         editTextSearch.text.orEmpty()
                     )
                 )
+                hideKeyboard()
             }
             EditorInfo.IME_ACTION_SEARCH == actionId
         }
 
-        editTextAmount.doAfterTextChanged { text ->
-            val amount = text.toString().toIntOrNull()
-            if (amount != viewModel.uiState.value.amount) {
-                viewModel.invoke(ShowProductContract.Action.ChangedAmount(amount))
-            }
+        buttonPlus.click {
+            viewModel.invoke(ShowProductContract.Action.PlusCartProduct)
+        }
+
+        buttonMinus.click {
+            viewModel.invoke(ShowProductContract.Action.MinusCartProduct)
         }
 
         buttonAddToCart.click {
@@ -76,22 +79,16 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
         }
     }
 
-    override fun collectFailState(fail: String) {
-        super.collectFailState(fail)
-        binding.textViewEmpty.isVisible = true
-        binding.containerResult.isVisible = false
-    }
-
     private fun collectUiState(uiState: ShowProductContract.UiState) {
         with(binding) {
             textViewEmpty.isVisible = uiState.name.isEmpty()
             containerResult.isVisible = uiState.name.isNotEmpty()
 
-            editTextAmount.setText(uiState.amount.toString())
+            textViewAmount.text = uiState.amount.toString()
             textViewTitle.text = uiState.name
-            textViewPrice.text = getString(R.string.text_price, uiState.oneAmountPrice.toString())
+            textViewPrice.text = uiState.oneAmountPrice.toMoney()
             textViewStockCount.text = getString(R.string.text_amount, uiState.amount.toString())
-            textViewTotalPrice.text = getString(R.string.text_price, uiState.totalPrice.toString())
+            editTextTotalPrice.setText(uiState.totalPrice.toMoney())
         }
     }
 }

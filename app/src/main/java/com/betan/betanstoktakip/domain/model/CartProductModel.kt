@@ -5,5 +5,8 @@ data class CartProductModel(
     val name: String,
     val amount: Int,
     val salePrice: Double,
+    val stockAmount: Int,
+) {
     val totalPrice: Double
-)
+        get() = salePrice * amount
+}
