@@ -24,6 +24,9 @@ object ShowProductContract {
     ) {
         val totalPrice: Double
             get() = amount * oneAmountPrice
+
+        val isEnableAddToCart: Boolean
+            get() = stockAmount > 0
     }
 
 }

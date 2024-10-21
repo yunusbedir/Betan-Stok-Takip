@@ -87,8 +87,12 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
             textViewAmount.text = uiState.amount.toString()
             textViewTitle.text = uiState.name
             textViewPrice.text = uiState.oneAmountPrice.toMoney()
-            textViewStockCount.text = getString(R.string.text_amount, uiState.amount.toString())
+            textViewStockCount.text = getString(R.string.text_amount, uiState.stockAmount.toString())
             editTextTotalPrice.setText(uiState.totalPrice.toMoney())
+
+            editTextTotalPrice.isVisible = uiState.isEnableAddToCart
+            containerAmount.isVisible = uiState.isEnableAddToCart
+            buttonAddToCart.isEnabled = uiState.isEnableAddToCart
         }
     }
 }

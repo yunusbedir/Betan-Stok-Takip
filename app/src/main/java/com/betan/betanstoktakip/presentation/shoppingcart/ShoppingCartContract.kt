@@ -21,6 +21,8 @@ object ShoppingCartContract {
         data class RemoveCartProduct(
             val barcode: String,
         ) : Action
+
+        data object Sell : Action
     }
 
     sealed interface Event {
@@ -37,7 +39,7 @@ object ShoppingCartContract {
         val totalPrice: Double
             get() = cartProductModels.sumOf { it.totalPrice }
 
-        val discountedTotalPrice: Double
+        val paidPrice: Double
             get() = totalPrice - totalPrice * discountRate
     }
 }

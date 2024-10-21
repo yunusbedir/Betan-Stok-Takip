@@ -52,7 +52,7 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>(
                 )
             }
             buttonSell.click {
-
+                viewModel.invoke(ShoppingCartContract.Action.Sell)
             }
         }
     }
@@ -91,8 +91,8 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>(
         with(binding) {
             editTextDiscountCode.setText(uiState.discountCode)
             textViewTotalPrice.text = uiState.totalPrice.toMoney()
-            textViewPaidPrice.text = uiState.discountedTotalPrice.toMoney()
-            textViewTotalPrice.isVisible = uiState.totalPrice != uiState.discountedTotalPrice
+            textViewPaidPrice.text = uiState.paidPrice.toMoney()
+            textViewTotalPrice.isVisible = uiState.totalPrice != uiState.paidPrice
         }
     }
 

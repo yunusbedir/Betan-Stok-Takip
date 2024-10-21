@@ -8,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
+import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.presentation.barcode.BarcodeScannerActivity
 import com.betan.betanstoktakip.presentation.barcode.BarcodeScannerContract
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -103,7 +104,12 @@ abstract class BaseFragment<VBinding : ViewBinding>(
 
     protected fun startBarcodeActivity() {
         context?.let { safeContext ->
-            barcodeActivityResultLauncher.launch(Intent(safeContext, BarcodeScannerActivity::class.java))
+            barcodeActivityResultLauncher.launch(
+                Intent(
+                    safeContext,
+                    BarcodeScannerActivity::class.java
+                )
+            )
         }
     }
 
@@ -117,15 +123,14 @@ abstract class BaseFragment<VBinding : ViewBinding>(
 
     protected open fun collectFailState(fail: String) {
         context?.let { safeContext ->
-            AlertDialog.Builder(safeContext)
+            MaterialAlertDialogBuilder(safeContext)
                 .setCancelable(true)
+                .setIcon(R.drawable.ic_delete)
                 .setTitle("Uyarı")
                 .setMessage(fail)
-                .setPositiveButton(
-                    "Tamam"
-                ) { _, _ ->
-                }
-                .create()
+                .setPositiveButton("Tamam") { dialog, _ ->
+                    dialog.dismiss()
+                }.create()
                 .show()
         }
     }

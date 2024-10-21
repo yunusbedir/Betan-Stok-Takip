@@ -6,6 +6,7 @@ import com.betan.betanstoktakip.domain.usecases.cart.GetDiscountRateUseCase
 import com.betan.betanstoktakip.domain.usecases.cart.MinusCartProductUseCase
 import com.betan.betanstoktakip.domain.usecases.cart.PlusCartProductUseCase
 import com.betan.betanstoktakip.domain.usecases.cart.RemoveCartProductUseCase
+import com.betan.betanstoktakip.domain.usecases.cart.SellCartProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +23,7 @@ class ShoppingCartViewModel @Inject constructor(
     private val plusCartProductUseCase: PlusCartProductUseCase,
     private val getCartProductsUseCase: GetCartProductsUseCase,
     private val removeCartProductUseCase: RemoveCartProductUseCase,
+    private val sellCartProductsUseCase: SellCartProductsUseCase
 ) : BaseViewModel() {
 
     private val _uiState = MutableStateFlow(ShoppingCartContract.UiState())
@@ -40,6 +42,7 @@ class ShoppingCartViewModel @Inject constructor(
             is ShoppingCartContract.Action.MinusCartProduct -> minusCartProduct(action)
             is ShoppingCartContract.Action.PlusCartProduct -> plusCartProduct(action)
             is ShoppingCartContract.Action.RemoveCartProduct -> removeCartProduct(action)
+            ShoppingCartContract.Action.Sell -> sell()
         }
     }
 
@@ -114,4 +117,16 @@ class ShoppingCartViewModel @Inject constructor(
         }
     }
 
+    private fun sell() {
+        _uiState.value.let { state ->
+            val params = SellCartProductsUseCase.Params(
+                items = state.cartProductModels,
+                discountCode = state.discountCode,
+                discountRate = state.discountRate,
+            )
+            sellCartProductsUseCase.action(params) {
+                _uiState.update { ShoppingCartContract.UiState() }
+            }
+        }
+    }
 }
