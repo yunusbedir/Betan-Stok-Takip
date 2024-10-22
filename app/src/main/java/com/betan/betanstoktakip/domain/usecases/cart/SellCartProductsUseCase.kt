@@ -3,6 +3,8 @@ package com.betan.betanstoktakip.domain.usecases.cart
 import com.betan.betanstoktakip.core.base.domain.UseCase
 import com.betan.betanstoktakip.core.extensions.orZero
 import com.betan.betanstoktakip.data.local.LocalRepository
+import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
+import com.betan.betanstoktakip.domain.firebase.FirebaseFields
 import com.betan.betanstoktakip.domain.model.CartProductModel
 import com.betan.betanstoktakip.domain.model.ProductModel
 import com.betan.betanstoktakip.domain.model.SoldProductsModel
@@ -22,12 +24,12 @@ class SellCartProductsUseCase @Inject constructor(
         val db = Firebase.firestore
         val batch = db.batch()
 
-        db.collection("SoldProducts")
+        db.collection(FirebaseCollections.SALES_HISTORIES)
             .add(params.toRequestModel())
             .await()
 
-        db.collection("Products")
-            .whereIn("barcode", params.items.map { it.barcode })
+        db.collection(FirebaseCollections.PRODUCTS)
+            .whereIn(FirebaseFields.BARCODE, params.items.map { it.barcode })
             .get()
             .await().documents.onEach { snapsShot ->
                 val item = snapsShot.toObject<ProductModel>()
@@ -36,7 +38,7 @@ class SellCartProductsUseCase @Inject constructor(
                         it.barcode == item.barcode
                     }.sumOf { it.amount }.orZero()
                 )?.let {
-                    val ref = db.collection("Products").document(it.barcode)
+                    val ref = db.collection(FirebaseCollections.PRODUCTS).document(it.barcode)
                     batch.set(ref, it)
                 }
             }

@@ -1,6 +1,7 @@
 package com.betan.betanstoktakip.domain.usecases.product
 
 import com.betan.betanstoktakip.core.base.domain.UseCase
+import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -12,10 +13,10 @@ class AddProductUseCase @Inject constructor(
 ) : UseCase<AddProductUseCase.Params, Unit>() {
     override suspend fun run(params: Params) {
         val productInFirebase =
-            Firebase.firestore.collection("Products").document(params.barcode).get().await()
+            Firebase.firestore.collection(FirebaseCollections.PRODUCTS).document(params.barcode).get().await()
 
         if (productInFirebase.exists().not()) {
-            Firebase.firestore.collection("Products").document(params.barcode)
+            Firebase.firestore.collection(FirebaseCollections.PRODUCTS).document(params.barcode)
                 .set(params.toRequestModel()).await()
         } else {
             throw Exception("Ürün zaten var.")

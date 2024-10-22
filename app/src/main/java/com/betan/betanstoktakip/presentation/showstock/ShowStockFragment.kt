@@ -2,14 +2,13 @@ package com.betan.betanstoktakip.presentation.showstock
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.betan.betanstoktakip.MainContract
+import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
-import com.betan.betanstoktakip.core.extensions.orEmpty
-import com.betan.betanstoktakip.core.extensions.toDoubleOrZero
-import com.betan.betanstoktakip.core.extensions.toIntOrZero
+import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.helper.viewLifecycleLazy
 import com.betan.betanstoktakip.databinding.FragmentShowStockBinding
-import com.betan.betanstoktakip.presentation.addproduct.AddProductContract
 import com.sn.biometric.Biometric
 import com.sn.biometric.BiometricListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,6 +61,13 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
                     ""
                 )
             )
+        }
+        setupListeners()
+    }
+
+    private fun setupListeners() {
+        binding.buttonShowSoldProducts.click {
+            findNavController().navigate(R.id.action_showStockFragment_to_salesHistoriesFragment)
         }
     }
 

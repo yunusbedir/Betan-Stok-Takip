@@ -5,7 +5,7 @@
     <dimen name="margin_bottom_between_text_input_and_button">16dp</dimen>
     <dimen name="margin_bottom_between_text_input_and_text_input">8dp</dimen>
     <dimen name="margin_text_view_login_title">32dp</dimen>
-    <dimen name="height_top_bar">64dp</dimen>
+    <dimen name="height_top_bar">56dp</dimen>
     <dimen name="padding_horizontal_top_bar">16dp</dimen>
     <dimen name="margin_horizontal_text_view_in_top_bar">32dp</dimen>
     <dimen name="margin_top_for_top">12dp</dimen>

@@ -20,4 +20,18 @@
         android:name="com.betan.betanstoktakip.presentation.shoppingcart.ShoppingCartFragment"
         android:label="fragment_shopping_cart"
         tools:layout="@layout/fragment_shopping_cart" />
+    <fragment
+        android:id="@+id/showStockFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.ShowStockFragment"
+        android:label="fragment_show_stock"
+        tools:layout="@layout/fragment_show_stock" >
+        <action
+            android:id="@+id/action_showStockFragment_to_salesHistoriesFragment"
+            app:destination="@id/salesHistoriesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/salesHistoriesFragment"
+        android:name="com.betan.betanstoktakip.presentation.saleshistories.SalesHistoriesFragment"
+        android:label="fragment_sales_histories"
+        tools:layout="@layout/fragment_sales_histories" />
 </navigation>
