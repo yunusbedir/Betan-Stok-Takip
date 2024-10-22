@@ -29,7 +29,13 @@ jobs:
       # 3. Google Services JSON Dosyasını Yarat
       - name: Create google-services.json
         run: echo "${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}" > app/google-services.json
-
+      
+      # 3.1. google-services.json Dosyasının Var Olup Olmadığını ve İçeriğini Kontrol Et
+      - name: Check google-services.json file
+        run: |
+          ls -alh app/google-services.json  # Dosyanın varlığını kontrol eder
+          cat app/google-services.json  # Dosyanın içeriğini gösterir
+      
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
         run: ./gradlew build
