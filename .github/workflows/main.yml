@@ -52,7 +52,7 @@ jobs:
 
       # 6. Firebase kimlik doğrulaması için token'ı kullan
       - name: Authenticate with Firebase
-        run: firebase login:ci --token ${{ secrets.FIREBASE_TOKEN }}
+        run: firebase use --token ${{ secrets.FIREBASE_TOKEN }}
 
       # 7. Firebase App Distribution'a APK'yı Yükle
       - name: Upload APK to Firebase
