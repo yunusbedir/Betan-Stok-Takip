@@ -28,17 +28,15 @@ jobs:
 
       # 3. Google Services JSON Dosyasını Yarat
       - name: Create google-services.json
-        run: echo "${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}" > app/google-services.json
-      
-      - name: Install jq
-        run: sudo apt-get install jq
+        env:
+          DATA: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
         
       # 3.1. google-services.json Dosyasının Var Olup Olmadığını ve İçeriğini Kontrol Et
       - name: Check google-services.json file
         run: |
           ls -alh app/google-services.json  # Dosyanın varlığını kontrol eder
           cat app/google-services.json  # Dosyanın içeriğini gösterir
-          jq . app/google-services.json  # JSON'u formatlı şekilde gösterir
       
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
