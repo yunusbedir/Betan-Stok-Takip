@@ -30,7 +30,9 @@ jobs:
       - name: Create google-services.json
         env:
           DATA: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
-        run: echo $DATA | base64 -di > app/google-services.json
+        run: |
+          mkdir -p app/key  # app/key dizinini oluştur
+          echo $DATA | base64 -di > app/key/BetanStockApp.jks
 
       - name: Decode keystore
         env:
