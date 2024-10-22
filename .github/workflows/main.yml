@@ -26,12 +26,7 @@ jobs:
           java-version: '17'
           distribution: 'corretto'  # JDK dağıtımını belirtiyoruz
 
-      # 3. Google Services JSON Dosyasını Yarat
-      - name: Create google-services.json
-        env:
-          DATA: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
-        run: echo $DATA | base64 -di > app/google-services.json
-
+      # 3. Keystore'u Çöz
       - name: Decode keystore
         env:
           DATA: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
@@ -39,21 +34,36 @@ jobs:
           mkdir -p app/key  # app/key dizinini oluştur
           echo $DATA | base64 -di > app/key/BetanStockApp.jks
 
-      # Android ile ilgili bağımlılıkları kur
+      # 4. Google Services JSON Dosyasını Yarat
+      - name: Create google-services.json
+        env:
+          DATA: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
+        run: echo $DATA | base64 -di > app/google-services.json
+
+      # 5. Gradle Bağımlılıklarını Yükle
       - name: Install Dependencies
         run: ./gradlew build
 
-      # 4. APK'yı oluştur
+      # 6. APK'yı İmzala
       - name: Build APK
         run: ./gradlew assembleRelease  # Release APK oluşturur
 
-      # 5. Firebase CLI'ı Kur
+      # 7. Firebase CLI'ı Kur
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
+        
+      # 8. Firebase CLI versiyonunu kontrol et
+      - name: Check Firebase CLI version
+        run: firebase --version
 
-      # 6. Firebase App Distribution'a APK'yı Yükle
+      # 9. APK'nın var olup olmadığını kontrol et
+      - name: Check if APK exists
+        run: ls -l ./app/build/outputs/apk/release/
+
+      # 10. Firebase App Distribution'a APK'yı Yükle
       - name: Upload APK to Firebase
         run: firebase appdistribution:distribute ./app/build/outputs/apk/release/app-release.apk \
           --app ${{ secrets.FIREBASE_APP_ID }} \
           --groups "testers" \
-          --token ${{ secrets.FIREBASE_TOKEN }}
+          --token ${{ secrets.FIREBASE_TOKEN }} \
+          --debug
