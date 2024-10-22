@@ -37,7 +37,11 @@ jobs:
         run: |
           ls -alh app/google-services.json  # Dosyanın varlığını kontrol eder
           cat app/google-services.json  # Dosyanın içeriğini gösterir
-      
+
+      - name: Decode keystore
+        run: |
+          echo "${{ secrets.ANDROID_KEYSTORE_BASE64 }}" | base64 --decode > ./key/BetanStockApp.jks
+
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
         run: ./gradlew build
@@ -52,7 +56,7 @@ jobs:
 
       # 6. Firebase App Distribution'a APK'yı Yükle
       - name: Upload APK to Firebase
-        run: firebase appdistribution:distribute ./app/build/outputs/apk/release/app-release-unsigned.apk \
+        run: firebase appdistribution:distribute ./app/build/outputs/apk/release/app-release.apk \
           --app ${{ secrets.FIREBASE_APP_ID }} \
           --groups "testers" \
           --token ${{ secrets.FIREBASE_TOKEN }}
