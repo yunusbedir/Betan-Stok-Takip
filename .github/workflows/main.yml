@@ -35,6 +35,7 @@ jobs:
         run: |
           ls -alh app/google-services.json  # Dosyanın varlığını kontrol eder
           cat app/google-services.json  # Dosyanın içeriğini gösterir
+          jq . app/google-services.json  # JSON'u formatlı şekilde gösterir
       
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
