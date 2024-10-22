@@ -50,11 +50,7 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
-      # 6. Firebase kimlik doğrulaması için token'ı kullan
-      - name: Authenticate with Firebase
-        run: firebase use --token ${{ secrets.FIREBASE_TOKEN }}
-
-      # 7. Firebase App Distribution'a APK'yı Yükle
+      # 6. Firebase App Distribution'a APK'yı Yükle
       - name: Upload APK to Firebase
         run: firebase appdistribution:distribute ./app/build/outputs/apk/release/app-release.apk \
           --app ${{ secrets.FIREBASE_APP_ID }} \
