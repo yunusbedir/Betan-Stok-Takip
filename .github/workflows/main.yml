@@ -3,11 +3,11 @@ name: Build and Distribute APK to Firebase
 on:
   push:
     branches:
-      - master  # Ana branch'e push yapıldığında tetiklenir
+      - main  # Ana branch'e push yapıldığında tetiklenir
   pull_request:
     types: [closed]
     branches:
-      - master  # Ana branch'e yapılan pull request (merge) işlemlerini tetikler
+      - main  # Ana branch'e yapılan pull request (merge) işlemlerini tetikler
 
 jobs:
   build:
@@ -24,6 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
+          distribution: 'adoptopenjdk'  # JDK dağıtımını belirtiyoruz
 
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
