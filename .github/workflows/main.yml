@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adoptopenjdk'  # JDK dağıtımını belirtiyoruz
+          distribution: 'corretto'  # JDK dağıtımını belirtiyoruz
 
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
