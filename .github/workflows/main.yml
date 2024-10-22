@@ -30,6 +30,9 @@ jobs:
       - name: Create google-services.json
         run: echo "${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}" > app/google-services.json
       
+      - name: Install jq
+        run: sudo apt-get install jq
+        
       # 3.1. google-services.json Dosyasının Var Olup Olmadığını ve İçeriğini Kontrol Et
       - name: Check google-services.json file
         run: |
