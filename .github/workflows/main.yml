@@ -30,14 +30,14 @@ jobs:
       - name: Create google-services.json
         env:
           DATA: ${{ secrets.FIREBASE_GOOGLE_SERVICES_JSON }}
-        run: |
-          mkdir -p app/key  # app/key dizinini oluştur
-          echo $DATA | base64 -di > app/key/BetanStockApp.jks
+        run: echo $DATA | base64 -di > app/google-services.json
 
       - name: Decode keystore
         env:
           DATA: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-        run: echo $DATA | base64 -di > app/key/BetanStockApp.jks
+        run: |
+          mkdir -p app/key  # app/key dizinini oluştur
+          echo $DATA | base64 -di > app/key/BetanStockApp.jks
 
       # Android ile ilgili bağımlılıkları kur
       - name: Install Dependencies
