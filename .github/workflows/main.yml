@@ -60,10 +60,18 @@ jobs:
       - name: Check if APK exists
         run: ls -l ./app/build/outputs/apk/release/
 
+      # 10. Google Application Credentials JSON Dosyasını Yarat
+      - name: Set up Google Application Credentials
+        env:
+          DATA: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        run: echo $DATA | base64 -di > app/gcloud-service-key.json
+
       # 10. Firebase App Distribution'a APK'yı Yükle
       - name: Upload APK to Firebase
-        run: firebase appdistribution:distribute ./app/build/outputs/apk/release/app-release.apk \
-          --app ${{ secrets.FIREBASE_APP_ID }} \
-          --groups "testers" \
-          --token ${{ secrets.FIREBASE_TOKEN }} \
-          --debug
+        run: |
+          firebase appdistribution:distribute ./app/build/outputs/apk/release/app-release.apk \
+            --app ${{ secrets.FIREBASE_APP_ID }} \
+            --groups "testers" \
+            --debug
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: app/gcloud-service-key.json
