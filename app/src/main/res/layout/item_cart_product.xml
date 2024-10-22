@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin_horizontal_in_container"
+    android:layout_marginBottom="@dimen/margin_standard"
+    android:background="@drawable/bg_item_view">
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:textAppearance="@style/Typography.Basic.XLarge.Strong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Garnier 3'ü 1 arada" />
+
+    <TextView
+        android:id="@id/textViewTotalPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/Typography.Basic.Small.Strong"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+        app:layout_constraintBottom_toBottomOf="@id/containerAmount"
+        app:layout_constraintEnd_toStartOf="@id/containerAmount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/containerAmount"
+        tools:text="1.111.000 TL" />
+
+    <LinearLayout
+        android:id="@+id/containerAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+        android:layout_marginVertical="@dimen/margin_standard"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewName">
+
+        <View
+            android:id="@+id/buttonPlus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_circle_add"
+            android:gravity="center" />
+
+        <TextView
+            android:textAppearance="@style/Typography.Basic.XLarge.Strong"
+            android:id="@+id/editTextAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="@null"
+            android:gravity="center"
+            android:minWidth="40dp"
+            tools:text="0" />
+
+        <View
+            android:id="@+id/buttonMinus"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/ic_circle_remove"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

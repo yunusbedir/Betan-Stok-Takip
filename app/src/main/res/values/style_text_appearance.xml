@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Typography.Base" parent="Theme.BetanStokTakip">
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/baseForegroundDefault</item>
+    </style>
+
+    <style name="Typography.Basic.Mass" parent="Typography.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Basic.Small.Mass" parent="Typography.Basic.Mass">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="Typography.Basic.XSmall.Mass" parent="Typography.Basic.Mass">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Typography.Basic.XXSmall.Mass" parent="Typography.Basic.Mass">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="Typography.Basic.Large.Strong" parent="Typography.Base">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Typography.Basic.Large.Mass" parent="Typography.Base">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Basic.XLarge.Mass" parent="Typography.Base">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Basic.XXLarge.Mass" parent="Typography.Base">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Basic.XXLarge.Strong" parent="Typography.Base">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Basic.Body.Default" parent="Typography.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Typography.Basic.Body.Strong" parent="Typography.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/baseForegroundDefault</item>
+    </style>
+
+    <style name="Typography.Basic.XSmall.Default" parent="Typography.Base">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Typography.Basic.XSmall.Strong" parent="Typography.Base">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Basic.XLarge.Strong" parent="Typography.Base">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/baseForegroundDefault</item>
+        <item name="lineHeight">26.sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Typography.Basic.Body.Mass" parent="Typography.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="Typography.Basic.Small.Default" parent="Typography.Base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Typography.Basic.Small.Strong" parent="Typography.Base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/baseForegroundDefault</item>
+        <item name="lineHeight">26.sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="Typography.Basic.XXXLarge.Default" parent="Typography.Base">
+        <item name="android:textSize">32sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="autoSizeMinTextSize">12sp</item>
+        <item name="autoSizeTextType">uniform</item>
+    </style>
+
+    <style name="Typography.Button.Medium" parent="Typography.Base">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Button.Large" parent="Typography.Base">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Button.Small" parent="Typography.Base">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Typography.Button.Large.Outlined" parent="Typography.Button.Large">
+    </style>
+
+    <style name="Typography.Input.Medium" parent="Typography.Base">
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
