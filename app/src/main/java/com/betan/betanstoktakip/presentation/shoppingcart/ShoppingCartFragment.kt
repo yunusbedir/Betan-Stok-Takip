@@ -8,6 +8,7 @@ import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.extensions.orEmpty
+import com.betan.betanstoktakip.core.extensions.strikeThroughText
 import com.betan.betanstoktakip.core.extensions.toMoney
 import com.betan.betanstoktakip.databinding.FragmentShoppingCartBinding
 import com.betan.betanstoktakip.presentation.shoppingcart.adapter.ItemCartProductAdapter
@@ -95,15 +96,8 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>(
             textViewTotalPrice.text = uiState.totalPrice.toMoney()
             textViewPaidPrice.text = uiState.paidPrice.toMoney()
 
-            if (uiState.totalPrice != uiState.paidPrice){
-                textViewTotalPrice.paintFlags=textViewTotalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                textViewTotalPrice.isVisible = true
-            }
-            else {
-                // Fark yoksa çizgiyi kaldır
-                textViewTotalPrice.paintFlags = textViewTotalPrice.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-                textViewTotalPrice.isVisible = false
-            }
+            textViewTotalPrice.strikeThroughText(uiState.totalPrice != uiState.paidPrice)
+
 
         }
     }
