@@ -1,5 +1,6 @@
 package com.betan.betanstoktakip.presentation.shoppingcart
 
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -7,6 +8,7 @@ import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.extensions.orEmpty
+import com.betan.betanstoktakip.core.extensions.strikeThroughText
 import com.betan.betanstoktakip.core.extensions.toMoney
 import com.betan.betanstoktakip.databinding.FragmentShoppingCartBinding
 import com.betan.betanstoktakip.presentation.shoppingcart.adapter.ItemCartProductAdapter
@@ -89,10 +91,14 @@ class ShoppingCartFragment : BaseFragment<FragmentShoppingCartBinding>(
     private fun collectUiState(uiState: ShoppingCartContract.UiState) {
         itemCartProductAdapter.submitList(uiState.cartProductModels)
         with(binding) {
+
             editTextDiscountCode.setText(uiState.discountCode)
             textViewTotalPrice.text = uiState.totalPrice.toMoney()
             textViewPaidPrice.text = uiState.paidPrice.toMoney()
-            textViewTotalPrice.isVisible = uiState.totalPrice != uiState.paidPrice
+
+            textViewTotalPrice.strikeThroughText(uiState.totalPrice != uiState.paidPrice)
+
+
         }
     }
 
