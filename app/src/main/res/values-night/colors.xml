@@ -2,5 +2,67 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="baseForegroundDefault">#E3E3E3</color>
+    <color name="baseForegroundDefault">#E1E1E1</color> <!-- Daha açık metin rengi -->
+
+    <color name="primary">#B39DDB</color> <!-- Daha açık mor tonları -->
+    <color name="surfaceTint">#B39DDB</color> <!-- Aynı ton -->
+    <color name="onPrimary">#000000</color> <!-- Siyah metin -->
+    <color name="primaryContainer">#4E2A84</color> <!-- Daha koyu mor -->
+    <color name="onPrimaryContainer">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="secondary">#9E8AA4</color> <!-- Daha soluk, gri-mor -->
+    <color name="onSecondary">#000000</color> <!-- Siyah metin -->
+    <color name="secondaryContainer">#5C3F6B</color> <!-- Koyu mor -->
+    <color name="onSecondaryContainer">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="tertiary">#D26A7F</color> <!-- Koyu kırmızı tonları -->
+    <color name="onTertiary">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="tertiaryContainer">#A84F65</color> <!-- Koyu kırmızı -->
+    <color name="onTertiaryContainer">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="error">#E57373</color> <!-- Açık kırmızı -->
+    <color name="onError">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="errorContainer">#D32F2F</color> <!-- Koyu kırmızı -->
+    <color name="onErrorContainer">#FFFFFF</color> <!-- Beyaz metin -->
+
+    <color name="background">#121212</color> <!-- Koyu arka plan -->
+    <color name="onBackground">#E1E1E1</color> <!-- Açık metin -->
+    <color name="surface">#1D1D1D</color> <!-- Koyu yüzey -->
+    <color name="onSurface">#E1E1E1</color> <!-- Açık metin -->
+    <color name="surfaceVariant">#3A3A3A</color> <!-- Koyu gri yüzey -->
+    <color name="onSurfaceVariant">#E1E1E1</color> <!-- Açık metin -->
+    <color name="outline">#6F6F6F</color> <!-- Gri outline -->
+    <color name="outlineVariant">#A0A0A0</color> <!-- Açık gri outline -->
+
+    <color name="shadow">#000000</color> <!-- Siyah gölge -->
+    <color name="scrim">#000000</color> <!-- Siyah scrim -->
+    <color name="inverseSurface">#D1D1D1</color> <!-- Açık yüzey -->
+    <color name="inverseOnSurface">#121212</color> <!-- Koyu metin -->
+    <color name="inversePrimary">#4E2A84</color> <!-- Koyu mor -->
+
+    <color name="primaryFixed">#311B5B</color> <!-- Daha koyu mor -->
+    <color name="onPrimaryFixed">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="primaryFixedDim">#4E2A84</color> <!-- Aynı koyu mor -->
+    <color name="onPrimaryFixedVariant">#FFFFFF</color> <!-- Beyaz metin -->
+
+    <color name="secondaryFixed">#3D2B48</color> <!-- Koyu mor-gri -->
+    <color name="onSecondaryFixed">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="secondaryFixedDim">#4C3B5C</color> <!-- Koyu gri-mor -->
+    <color name="onSecondaryFixedVariant">#FFFFFF</color> <!-- Beyaz metin -->
+
+    <color name="tertiaryFixed">#8C1F29</color> <!-- Koyu kırmızı -->
+    <color name="onTertiaryFixed">#FFFFFF</color> <!-- Beyaz metin -->
+    <color name="tertiaryFixedDim">#A84F65</color> <!-- Koyu kırmızı -->
+    <color name="onTertiaryFixedVariant">#FFFFFF</color> <!-- Beyaz metin -->
+
+    <color name="surfaceDim">#2A2A2A</color> <!-- Koyu gri dim yüzey -->
+    <color name="surfaceBright">#3C3C3C</color> <!-- Orta koyu yüzey -->
+    <color name="surfaceContainerLowest">#121212</color> <!-- Koyu zemin -->
+    <color name="surfaceContainerLow">#1D1D1D</color> <!-- Koyu yüzey -->
+    <color name="surfaceContainer">#2C2C2C</color> <!-- Koyu gri yüzey -->
+    <color name="surfaceContainerHigh">#383838</color> <!-- Orta koyu yüzey -->
+    <color name="surfaceContainerHighest">#444444</color> <!-- Daha açık koyu yüzey -->
+
+    <color name="surfaceTint5">#0D6750A4</color> <!-- Koyu mavi tonları -->
+    <color name="surfaceTint8">#146750A4</color> <!-- Koyu mavi tonları -->
+    <color name="surfaceTint11">#1C6750A4</color> <!-- Koyu mavi tonları -->
+    <color name="surfaceTint12">#1F6750A4</color> <!-- Koyu mavi tonları -->
+    <color name="surfaceTint15">#266750A4</color> <!-- Koyu mavi tonları -->
 </resources>
