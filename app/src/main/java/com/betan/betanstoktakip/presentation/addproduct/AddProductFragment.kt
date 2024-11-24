@@ -34,6 +34,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
                 AddProductContract.Action.AddProduct(
                     barcode = binding.editTextSearch.text.orEmpty(),
                     name = binding.editTextName.text.orEmpty(),
+                    brandName = "",
                     stockAmount = binding.editTextStockAmount.text.orEmpty().toIntOrZero(),
                     purchasePrice = binding.editTextPurchasePrice.text.orEmpty().toDoubleOrZero(),
                     salePrice = binding.editTextSalePrice.text.orEmpty().toDoubleOrZero(),
@@ -73,6 +74,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
                         AddProductContract.Action.AddProduct(
                             barcode = binding.editTextSearch.text.orEmpty(),
                             name = binding.editTextName.text.orEmpty(),
+                            brandName = "",
                             stockAmount = binding.editTextStockAmount.text.orEmpty().toIntOrZero(),
                             purchasePrice = binding.editTextPurchasePrice.text.orEmpty()
                                 .toDoubleOrZero(),

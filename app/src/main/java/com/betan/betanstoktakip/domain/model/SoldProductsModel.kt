@@ -13,6 +13,7 @@ data class SoldProductsModel(
     data class Item(
         val barcode: String,
         val name: String,
+        val brandName: String,
         val amount: Int,
         val salePrice: Double,
         val totalPrice: Double,
