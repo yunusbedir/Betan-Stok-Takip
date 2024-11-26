@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="baseForegroundDefault">#272727</color>
+    <color name="statusBarColor">#513A8D</color>
+    <color name="primaryTextColor">#FFFFFFFF</color>
+    <color name="primaryColor">#513A8D</color>
+
 </resources>
