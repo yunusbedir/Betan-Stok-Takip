@@ -37,6 +37,7 @@ class AddProductViewModel @Inject constructor(
         val params = AddProductUseCase.Params(
             barcode = action.barcode,
             name = action.name,
+            brandName = action.brandName,
             stockAmount = action.stockAmount.orZero(),
             purchasePrice = action.purchasePrice.orZero(),
             salePrice = action.salePrice.orZero(),

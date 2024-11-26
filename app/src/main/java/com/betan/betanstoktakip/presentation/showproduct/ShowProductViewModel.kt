@@ -76,6 +76,7 @@ class ShowProductViewModel @Inject constructor(
             val params = AddToCartUseCase.Params(
                 barcode = state.barcode,
                 name = state.name,
+                brandName = state.brandName,
                 amount = state.amount,
                 salePrice = state.oneAmountPrice,
                 totalPrice = state.totalPrice,

@@ -18,6 +18,7 @@ class AddToCartUseCase @Inject constructor(
                 CartProductModel(
                     barcode = params.barcode,
                     name = params.name,
+                    brandName = params.brandName,
                     amount = params.amount,
                     salePrice = params.salePrice,
                     stockAmount = params.stockAmount,
@@ -31,6 +32,7 @@ class AddToCartUseCase @Inject constructor(
     data class Params(
         val barcode: String,
         val name: String,
+        val brandName: String,
         val amount: Int,
         val salePrice: Double,
         val totalPrice: Double,

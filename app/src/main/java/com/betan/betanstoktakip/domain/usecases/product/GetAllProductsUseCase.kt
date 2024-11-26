@@ -4,21 +4,18 @@ import com.betan.betanstoktakip.core.base.domain.UseCase
 import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.toObject
+import com.google.firebase.firestore.toObjects
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
-class GetProductUseCase @Inject constructor() : UseCase<GetProductUseCase.Params, ProductModel>() {
-    override suspend fun run(params: Params): ProductModel {
-        val response = Firebase.firestore.collection(FirebaseCollections.PRODUCTS)
-            .document(params.barcode)
-            .get()
-            .await()
-        return response.toObject<ProductModel>()!!
-    }
+class GetAllProductsUseCase @Inject constructor(
+) : UseCase<Unit, List<ProductModel>>() {
 
-    data class Params(
-        val barcode: String
-    )
+    override suspend fun run(params: Unit): List<ProductModel> {
+        val response = Firebase.firestore.collection(FirebaseCollections.PRODUCTS)
+            .get().await()
+
+        return response.toObjects<ProductModel>()
+    }
 }

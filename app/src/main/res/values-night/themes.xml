@@ -2,5 +2,58 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.BetanStokTakip" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/statusBarColor</item>  <!-- Customize your dark theme here. -->
+        <!-- Genel Arka Plan ve Yüzey Renkleri -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="android:colorPrimary">@color/primary</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorPrimaryVariant">@color/primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/onPrimaryContainer</item>
+        <item name="android:colorSecondary" tools:targetApi="n_mr1">@color/secondary</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorSecondaryVariant">@color/secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/onSecondaryContainer</item>
+        <item name="colorTertiary">@color/tertiary</item>
+        <item name="colorOnTertiary">@color/onTertiary</item>
+        <item name="colorOnTertiaryContainer">@color/onTertiaryContainer</item>
+
+        <!-- Hata Renkleri -->
+        <item name="android:colorError" tools:targetApi="o">@color/error</item>
+        <item name="colorOnError">@color/onError</item>
+        <item name="colorErrorContainer">@color/errorContainer</item>
+        <item name="colorOnErrorContainer">@color/onErrorContainer</item>
+
+        <!-- Outline ve Diğer Yardımcı Renkler -->
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outlineVariant</item>
+
+        <!-- Gölge ve Scrim Renkleri -->
+        <item name="android:shadowColor">@color/shadow</item>
+        <item name="scrimBackground">@color/scrim</item>
+
+        <!-- Containerlar ve Dim Surface Renkleri -->
+        <item name="colorOnSurfaceVariant">@color/onSurfaceVariant</item>
+        <item name="colorSurfaceContainerLowest">@color/surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/surfaceContainerHighest</item>
+
+        <!-- Sabit Renkler -->
+        <item name="colorPrimaryFixed">@color/primaryFixed</item>
+        <item name="colorOnPrimaryFixed">@color/onPrimaryFixed</item>
+        <item name="colorPrimaryFixedDim">@color/primaryFixedDim</item>
+        <item name="colorOnPrimaryFixedVariant">@color/onPrimaryFixedVariant</item>
+
+        <item name="colorSecondaryFixed">@color/secondaryFixed</item>
+        <item name="colorOnSecondaryFixed">@color/onSecondaryFixed</item>
+        <item name="colorSecondaryFixedDim">@color/secondaryFixedDim</item>
+        <item name="colorOnSecondaryFixedVariant">@color/onSecondaryFixedVariant</item>
+
+        <item name="colorTertiaryFixed">@color/tertiaryFixed</item>
+        <item name="colorOnTertiaryFixed">@color/onTertiaryFixed</item>
+        <item name="colorTertiaryFixedDim">@color/tertiaryFixedDim</item>
+        <item name="colorOnTertiaryFixedVariant">@color/onTertiaryFixedVariant</item>
+
     </style>
 </resources>

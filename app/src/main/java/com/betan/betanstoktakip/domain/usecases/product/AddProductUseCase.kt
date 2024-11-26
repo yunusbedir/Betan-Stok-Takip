@@ -1,6 +1,7 @@
 package com.betan.betanstoktakip.domain.usecases.product
 
 import com.betan.betanstoktakip.core.base.domain.UseCase
+import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.ProductModel
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -11,12 +12,16 @@ class AddProductUseCase @Inject constructor(
 
 ) : UseCase<AddProductUseCase.Params, Unit>() {
     override suspend fun run(params: Params) {
-        val productInFirebase =
-            Firebase.firestore.collection("Products").document(params.barcode).get().await()
+        val productInFirebase = Firebase.firestore.collection(FirebaseCollections.PRODUCTS)
+            .document(params.barcode)
+            .get()
+            .await()
 
         if (productInFirebase.exists().not()) {
-            Firebase.firestore.collection("Products").document(params.barcode)
-                .set(params.toRequestModel()).await()
+            Firebase.firestore.collection(FirebaseCollections.PRODUCTS)
+                .document(params.barcode)
+                .set(params.toRequestModel())
+                .await()
         } else {
             throw Exception("Ürün zaten var.")
         }
@@ -25,6 +30,7 @@ class AddProductUseCase @Inject constructor(
     data class Params(
         val barcode: String,
         val name: String,
+        val brandName: String,
         val stockAmount: Int,
         val purchasePrice: Double,
         val salePrice: Double,
@@ -35,6 +41,7 @@ class AddProductUseCase @Inject constructor(
             return ProductModel(
                 barcode = barcode,
                 name = name,
+                brandName = brandName,
                 stockAmount = stockAmount,
                 purchasePrice = purchasePrice,
                 salePrice = salePrice,

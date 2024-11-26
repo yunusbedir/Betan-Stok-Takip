@@ -18,6 +18,7 @@ object ShowProductContract {
     data class UiState(
         val barcode: String = "",
         val name: String = "",
+        val brandName: String = "",
         val stockAmount: Int = 0,
         val oneAmountPrice: Double = 0.0,
         val amount: Int = 1,
