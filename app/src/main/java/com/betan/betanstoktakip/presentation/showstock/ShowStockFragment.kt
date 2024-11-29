@@ -1,15 +1,26 @@
 package com.betan.betanstoktakip.presentation.showstock
 
 import android.os.Bundle
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.betan.betanstoktakip.MainContract
+import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
+import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.extensions.orEmpty
+import com.betan.betanstoktakip.core.extensions.setupWithFirestoreBrands
 import com.betan.betanstoktakip.core.extensions.toDoubleOrZero
 import com.betan.betanstoktakip.core.extensions.toIntOrZero
 import com.betan.betanstoktakip.core.helper.viewLifecycleLazy
 import com.betan.betanstoktakip.databinding.FragmentShowStockBinding
+import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
+import com.betan.betanstoktakip.domain.model.BrandModel
 import com.betan.betanstoktakip.presentation.addproduct.AddProductContract
+import com.google.firebase.Firebase
+import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObjects
 import com.sn.biometric.Biometric
 import com.sn.biometric.BiometricListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +35,22 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
     private val biometric: Biometric by viewLifecycleLazy {
         Biometric(requireContext())
     }
-
+    private var brandList= arrayListOf<String>()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            initObserver()
+            viewModel.getBrand()
+            autoCompleteTextView.click{
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    brandList
+                )
+                autoCompleteTextView.setAdapter(adapter)
+            }
+        }
+    }
     private val biometricListener = object : BiometricListener {
         override fun onFingerprintAuthenticationSuccess() {
             viewModel.invoke(ShowStockContract.Action.GetStock)
@@ -38,6 +64,15 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
 
         }
 
+    }
+
+    private fun initObserver(){
+        viewModel.getBrandLiveData.observe(viewLifecycleOwner){ result->
+            brandList.clear()
+            result.forEach{ brand->
+                brandList.add(brand?.brandName.toString())
+            }
+        }
     }
 
     override fun onResume() {
@@ -68,4 +103,5 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
     override fun collectData() {
         collect(viewModel.failState, ::collectFailState)
     }
+
 }

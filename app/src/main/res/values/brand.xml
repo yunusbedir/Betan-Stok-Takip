@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="brand">
-        <item>Loreal Paris</item>
-        <item>Gliss</item>
-        <item>Elidor</item>
-        <item>Morfose</item>
-    </string-array>
-</resources>

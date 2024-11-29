@@ -5,31 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.showproduct.ShowProductFragment">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/containerTopBar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
-        android:background="@color/primaryColor"
-        android:elevation="3dp"
-        android:paddingHorizontal="@dimen/padding_horizontal_top_bar"
-        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_horizontal_text_view_in_top_bar"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="#fff"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -42,7 +18,7 @@
         app:endIconDrawable="@drawable/ic_qr_code_scanner"
         app:endIconMode="custom"
         app:endIconScaleType="center"
-        app:layout_constraintTop_toBottomOf="@id/containerTopBar">
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextSearch"
@@ -147,15 +123,10 @@
         android:layout_height="wrap_content"
         android:text="@string/button_text_add_product"
         android:textAllCaps="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu_bottom_nav" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
