@@ -15,7 +15,7 @@ class PlusCartProductUseCase @Inject constructor(
             if (item.barcode == params.barcode)
                 amount++
 
-            if (amount >= item.stockAmount)
+            if (amount > item.stockAmount)
                 throw Exception("Maximum ${item.stockAmount} Adet ürün ekleyebilirsin.")
 
             item.copy(

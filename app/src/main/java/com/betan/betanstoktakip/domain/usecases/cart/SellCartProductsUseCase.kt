@@ -72,7 +72,7 @@ class SellCartProductsUseCase @Inject constructor(
                     SoldProductsModel.Item(
                         barcode = item.barcode,
                         name = item.name,
-                        brandName = item.brandName,
+                        brandName = item.brandName?:"Bilinmiyor",
                         amount = item.amount,
                         salePrice = item.salePrice,
                         totalPrice = item.totalPrice,

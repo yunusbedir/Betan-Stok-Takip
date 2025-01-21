@@ -5,6 +5,7 @@
     <string name="email">Email</string>
     <string name="password">Şifre</string>
     <string name="search_barcode">Barcode Ara</string>
+    <string name="number_of_barcode">Barcode Numarası</string>
     <string name="sell">Sat</string>
     <string name="amount">Adet</string>
     <string name="total_price">Toplam Fiyat</string>
