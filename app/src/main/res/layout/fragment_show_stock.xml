@@ -1,14 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".presentation.showstock.ShowStockFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayoutSearch"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        android:hint="@string/search_barcode"
+        app:endIconDrawable="@drawable/ic_qr_code_scanner"
+        app:endIconMode="custom"
+        app:endIconScaleType="center"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="1234567890"
+            android:imeOptions="actionSearch"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:id="@+id/textViewDropDownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        app:endIconMode="dropdown_menu"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayoutSearch"
+        tools:ignore="DuplicateIds,MissingConstraints">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="Marka" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/buttonFindProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="Ürün Ara"
+        android:textAllCaps="true"
+        app:layout_constraintTop_toBottomOf="@id/textViewDropDownMenu"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/buttonShowAllProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="Tüm Ürünleri Görüntüle"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toTopOf="@id/buttonShowSales"
+        tools:layout_editor_absoluteX="16dp" />
+    <Button
+        android:id="@+id/buttonShowSales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="Satışları Görüntüle"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toTopOf="@id/buttonImportProduct"
+        tools:layout_editor_absoluteX="16dp" />
+    <Button
+        android:id="@+id/buttonImportProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:text=" Ürünleri İçeri Aktar"
+        android:textAllCaps="true"
+        app:layout_constraintBottom_toTopOf="@id/buttonExportProduct"
+        tools:layout_editor_absoluteX="16dp" />
+    <Button
+        android:id="@+id/buttonExportProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_top_for_top"
+        android:layout_marginRight="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="Satışları Dışarı Aktar"
+        android:textAllCaps="true"
+        tools:layout_editor_absoluteX="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

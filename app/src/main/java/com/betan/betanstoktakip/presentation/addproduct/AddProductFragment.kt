@@ -2,12 +2,15 @@ package com.betan.betanstoktakip.presentation.addproduct
 
 import android.Manifest
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.betan.betanstoktakip.MainContract
 import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
 import com.betan.betanstoktakip.core.extensions.orEmpty
+import com.betan.betanstoktakip.core.extensions.setupWithFirestoreBrands
 import com.betan.betanstoktakip.core.extensions.toDoubleOrZero
 import com.betan.betanstoktakip.core.extensions.toIntOrZero
 import com.betan.betanstoktakip.core.helper.viewLifecycleLazy
@@ -50,6 +53,12 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
 
         }
 
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.autoCompleteTextView.setupWithFirestoreBrands(requireContext()) { selectedBrand ->
+            Toast.makeText(requireContext(), "Seçilen: ${selectedBrand.brandName}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onResume() {
