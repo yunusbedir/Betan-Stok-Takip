@@ -17,5 +17,6 @@ class GetAllProductsUseCase @Inject constructor(
             .get().await()
 
         return response.toObjects<ProductModel>()
+
     }
 }

@@ -17,6 +17,7 @@ import com.betan.betanstoktakip.core.helper.viewLifecycleLazy
 import com.betan.betanstoktakip.databinding.FragmentShowStockBinding
 import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.BrandModel
+import com.betan.betanstoktakip.domain.model.ProductModel
 import com.betan.betanstoktakip.presentation.addproduct.AddProductContract
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -36,11 +37,13 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
         Biometric(requireContext())
     }
     private var brandList= arrayListOf<String>()
+    private var productList = arrayListOf<ProductModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             initObserver()
             viewModel.getBrand()
+            viewModel.getAllProduct()
             autoCompleteTextView.click{
                 val adapter = ArrayAdapter(
                     requireContext(),
@@ -49,6 +52,16 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
                 )
                 autoCompleteTextView.setAdapter(adapter)
             }
+            buttonShowAllProduct.setOnClickListener {
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_dropdown_item_1line,
+                    productList
+                )
+                autoCompleteTextView.setAdapter(adapter)
+                autoCompleteTextView.showDropDown() // Açılır listeyi otomatik göster
+            }
+
         }
     }
     private val biometricListener = object : BiometricListener {
@@ -73,7 +86,19 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
                 brandList.add(brand?.brandName.toString())
             }
         }
+
+        viewModel.getAllProductsLiveData.observe(viewLifecycleOwner){result ->
+            productList.clear()
+            result.forEach{ product ->
+                if (product != null) {
+                    productList.add(product)
+                }
+            }
+
+        }
+
     }
+
 
     override fun onResume() {
         super.onResume()
