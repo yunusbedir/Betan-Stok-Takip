@@ -2,12 +2,15 @@ package com.betan.betanstoktakip
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import com.betan.betanstoktakip.databinding.ActivityMainBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private val navController: NavController
         get() = navHostFragment.navController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -34,8 +38,9 @@ class MainActivity : AppCompatActivity() {
             setupNavigation()
         }
         setupNavigation()
-        window.statusBarColor = ContextCompat.getColor(this, R.color.statusBarColor)
+
     }
+
 
     private fun setupNavigation() {
         if (Firebase.auth.currentUser != null && navController.graph.id != R.navigation.nav_graph_main_fragment) {

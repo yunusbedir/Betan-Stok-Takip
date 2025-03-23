@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.betan.betanstoktakip.MainContract
 import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
@@ -37,13 +39,11 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
         Biometric(requireContext())
     }
     private var brandList= arrayListOf<String>()
-    private var productList = arrayListOf<ProductModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             initObserver()
             viewModel.getBrand()
-            viewModel.getAllProduct()
             autoCompleteTextView.click{
                 val adapter = ArrayAdapter(
                     requireContext(),
@@ -52,14 +52,8 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
                 )
                 autoCompleteTextView.setAdapter(adapter)
             }
-            buttonShowAllProduct.setOnClickListener {
-                val adapter = ArrayAdapter(
-                    requireContext(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    productList
-                )
-                autoCompleteTextView.setAdapter(adapter)
-                autoCompleteTextView.showDropDown() // Açılır listeyi otomatik göster
+            binding.buttonShowAllProduct.setOnClickListener {
+                findNavController().navigate(R.id.showAllProductFragment)
             }
 
         }
@@ -87,15 +81,6 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
             }
         }
 
-        viewModel.getAllProductsLiveData.observe(viewLifecycleOwner){result ->
-            productList.clear()
-            result.forEach{ product ->
-                if (product != null) {
-                    productList.add(product)
-                }
-            }
-
-        }
 
     }
 

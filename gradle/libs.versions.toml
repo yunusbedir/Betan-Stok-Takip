@@ -21,6 +21,7 @@ hilt = "2.50"
 navigationFragmentKtx = "2.8.2"
 securityCryptoKtx = "1.1.0-alpha06"
 googleServices = "4.4.2"
+gridlayout = "1.0.0"
 
 
 [libraries]
@@ -48,6 +49,7 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 androidx-security-crypto-ktx = { module = "androidx.security:security-crypto", version.ref = "securityCryptoKtx" }
+androidx-gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

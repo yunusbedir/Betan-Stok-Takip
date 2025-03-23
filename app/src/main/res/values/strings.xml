@@ -70,4 +70,5 @@
     <string name="hint_discount_code">İndirim Kodu</string>
     <string name="hint_total_price">Toplam Tutar</string>
     <string name="_0">0</string>
+    <string name="betan_stok_takip">Betan Stok Takip</string>
 </resources>
