@@ -1,5 +1,6 @@
-package com.betan.betanstoktakip.presentation.showstock
+package com.betan.betanstoktakip.presentation.showstock.showAllProduct
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,7 @@ class AllProductAdapter(
     inner class ProductViewHolder(private val binding: ItemAllProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(product: ProductModel) {
             binding.apply {
                 textViewName.text = product.brandName

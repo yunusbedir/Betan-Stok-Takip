@@ -1,6 +1,8 @@
 package com.betan.betanstoktakip.presentation.main
 
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,7 +20,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
 
     private val viewModel: MainViewModel by viewModels()
 
+
+
     override fun setupViews(savedInstanceState: Bundle?) {
+
         setupToolbar()
         setupNavController()
         setupListeners()
@@ -35,36 +40,40 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
     }
 
     private fun setupToolbar() {
-        binding.toolbar.apply {
+        // Toolbar'ı Fragment içinde kullanabilmek için Activity'ye set et
+        (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
-            setNavigationIcon(R.drawable.ic_back_button)
-            setNavigationOnClickListener {
-                requireActivity().onBackPressedDispatcher.onBackPressed()
-            }
-
+        // Toolbar'ın geri butonunu ayarla
+        (requireActivity() as AppCompatActivity).supportActionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeButtonEnabled(true)
         }
 
+
+
+        // Navigation Controller ve AppBar Configuration bağlantısı
         val navHostFragment =
-            childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.addProductFragment,
-                R.id.showAllProductFragment,
-                R.id.showProductFragment,
-                R.id.showStockFragment,
-                R.id.shoppingCartFragment
-            )
-        )
+        val appBarConfiguration = AppBarConfiguration(setOf(
+            R.id.addProductFragment,
+            R.id.showAllProductFragment,
+            R.id.showProductFragment,
+            R.id.showStockFragment,
+            R.id.shoppingCartFragment))
 
-        // Toolbar ile navController'ı bağla
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
-        // Fragmentlarda başlık değiştirilmesinin engellenmesi için:
+        binding.toolbar.setNavigationIcon(R.drawable.ic_back_button)
+        binding.toolbar.setNavigationOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
+        // Fragment başlığını sabit tut
         navController.addOnDestinationChangedListener { _, _, _ ->
             binding.toolbar.title = "Betan Stok Takip"
         }
+
     }
 
     // NavController setup

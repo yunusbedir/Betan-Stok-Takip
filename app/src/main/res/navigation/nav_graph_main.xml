@@ -28,10 +28,21 @@
         <action
             android:id="@+id/action_showStockFragment_to_showAllProductFragment"
             app:destination="@id/showAllProductFragment" />
+        <action
+            android:id="@+id/action_showStockFragment_to_showSellFragment"
+            app:destination="@id/showSellFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAllProductFragment"
-        android:name="com.betan.betanstoktakip.presentation.showstock.ShowAllProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.showAllProduct.ShowAllProductFragment"
         android:label="fragment_show_all_product"
         tools:layout="@layout/fragment_show_all_product" />
+    <fragment
+        android:id="@+id/showSellFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.showSellFragment.ShowSellFragment"
+        android:label="fragment_show_sell"
+        tools:layout="@layout/fragment_show_sell">
+
+    </fragment>
+
 </navigation>

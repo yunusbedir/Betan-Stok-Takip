@@ -6,6 +6,7 @@ object ShowStockContract {
         data object GetStock : Action
         data object GetBrands: Action
         data object GetProducts: Action
+        data object GetSalesExport : Action
         }
 
 

@@ -25,12 +25,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primaryColor"
+            app:titleCentered="true"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             android:minHeight="?attr/actionBarSize"
             app:layout_constraintBottom_toBottomOf="@id/containerTopBar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/ic_back_button"
-            app:navigationIconTint="@color/black"
+            app:navigationIconTint="@color/white"
             app:title="Betan Stok Takip"
             app:titleTextColor="@color/white" />
 

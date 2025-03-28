@@ -42,6 +42,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     private fun setupNavigation() {
         if (Firebase.auth.currentUser != null && navController.graph.id != R.navigation.nav_graph_main_fragment) {
             navController.setGraph(R.navigation.nav_graph_main_fragment, null)
