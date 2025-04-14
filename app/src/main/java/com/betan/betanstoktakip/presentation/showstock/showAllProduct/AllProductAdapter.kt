@@ -1,6 +1,7 @@
 package com.betan.betanstoktakip.presentation.showstock.showAllProduct
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -22,6 +23,7 @@ class AllProductAdapter(
                 textViewStockCount.text = "${product.stockAmount} Adet"
                 textViewOneAmountPrice.text = "${product.purchasePrice} TL"
                 textViewSalePrice.text = "${product.salePrice} TL"
+                Log.i("Mytag", "${product.salePrice}")
             }
         }
     }

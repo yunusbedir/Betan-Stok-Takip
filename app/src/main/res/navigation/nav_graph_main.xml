@@ -31,6 +31,12 @@
         <action
             android:id="@+id/action_showStockFragment_to_showSellFragment"
             app:destination="@id/showSellFragment" />
+        <action
+            android:id="@+id/action_showStockFragment_to_exportProductFragment"
+            app:destination="@id/exportProductFragment" />
+        <action
+            android:id="@+id/action_showStockFragment_to_importProductFragment"
+            app:destination="@id/importProductFragment" />
     </fragment>
     <fragment
         android:id="@+id/showAllProductFragment"
@@ -44,5 +50,15 @@
         tools:layout="@layout/fragment_show_sell">
 
     </fragment>
+    <fragment
+        android:id="@+id/exportProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.exportProduct.ExportProductFragment"
+        android:label="fragment_export_product"
+        tools:layout="@layout/fragment_export_product" />
+    <fragment
+        android:id="@+id/importProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.importProduct.ImportProductFragment"
+        android:label="fragment_import_product"
+        tools:layout="@layout/fragment_import_product" />
 
 </navigation>

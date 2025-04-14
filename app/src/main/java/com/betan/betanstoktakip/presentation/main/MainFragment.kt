@@ -21,7 +21,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
     private val viewModel: MainViewModel by viewModels()
 
 
-
     override fun setupViews(savedInstanceState: Bundle?) {
 
         setupToolbar()
@@ -50,18 +49,20 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
         }
 
 
-
         // Navigation Controller ve AppBar Configuration bağlantısı
         val navHostFragment =
             requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.addProductFragment,
-            R.id.showAllProductFragment,
-            R.id.showProductFragment,
-            R.id.showStockFragment,
-            R.id.shoppingCartFragment))
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.addProductFragment,
+                R.id.showAllProductFragment,
+                R.id.showProductFragment,
+                R.id.showStockFragment,
+                R.id.shoppingCartFragment
+            )
+        )
 
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
@@ -84,5 +85,21 @@ class MainFragment : BaseFragment<FragmentMainBinding>(
 
         // BottomNavigationView ile navController'ı bağla
         binding.bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.mainFragment,
+                R.id.loginFragment,
+                R.id.addProductFragment,
+                R.id.showStockFragment,
+                R.id.shoppingCartFragment,
+                R.id.showProductFragment -> {
+                    binding.bottomNavigationView.visibility = View.VISIBLE
+                }
+
+                else -> {
+                    binding.bottomNavigationView.visibility = View.GONE
+                }
+            }
+        }
     }
 }

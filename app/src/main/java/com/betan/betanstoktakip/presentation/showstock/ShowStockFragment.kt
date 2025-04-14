@@ -58,6 +58,8 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
             binding.buttonShowSales.setOnClickListener {
                 findNavController().navigate(R.id.showSellFragment)
             }
+            binding.buttonExportProduct.setOnClickListener {  }
+            binding.buttonImportProduct.setOnClickListener {  }
 
         }
     }
