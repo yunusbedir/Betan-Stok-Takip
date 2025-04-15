@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.betan.betanstoktakip.MainContract
 import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
@@ -17,6 +19,7 @@ import com.betan.betanstoktakip.core.helper.viewLifecycleLazy
 import com.betan.betanstoktakip.databinding.FragmentShowStockBinding
 import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.BrandModel
+import com.betan.betanstoktakip.domain.model.ProductModel
 import com.betan.betanstoktakip.presentation.addproduct.AddProductContract
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
@@ -49,6 +52,15 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
                 )
                 autoCompleteTextView.setAdapter(adapter)
             }
+            binding.buttonShowAllProduct.setOnClickListener {
+                findNavController().navigate(R.id.showAllProductFragment)
+            }
+            binding.buttonShowSales.setOnClickListener {
+                findNavController().navigate(R.id.showSellFragment)
+            }
+            binding.buttonExportProduct.setOnClickListener {  }
+            binding.buttonImportProduct.setOnClickListener {  }
+
         }
     }
     private val biometricListener = object : BiometricListener {
@@ -73,7 +85,10 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
                 brandList.add(brand?.brandName.toString())
             }
         }
+
+
     }
+
 
     override fun onResume() {
         super.onResume()

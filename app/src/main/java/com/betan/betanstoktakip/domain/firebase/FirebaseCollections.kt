@@ -5,6 +5,7 @@ object FirebaseCollections {
     const val PRODUCTS = "Products"
     const val SOLD_PRODUCTS = "SoldProducts"
     const val BRANDS = "Brands"
+    const val SALES_EXPORT = "SalesExport"
 }
 
 object FirebaseFields {

@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="baseForegroundDefault">#272727</color>
     <color name="statusBarColor">#513A8D</color>
+    <color name="itemBackgroundColor">#E6E1E6</color>
     <color name="primaryTextColor">#FFFFFFFF</color>
     <color name="primaryColor">#513A8D</color>
     <color name="primary">#513A8D</color>

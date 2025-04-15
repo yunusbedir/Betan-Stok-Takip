@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.BetanStokTakip" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:statusBarColor">@color/statusBarColor</item>
+
         <!-- Genel Arka Plan ve Yüzey Renkleri -->
         <item name="android:colorBackground">@color/background</item>
         <item name="colorOnSurface">@color/onSurface</item>

@@ -12,6 +12,7 @@
     <string name="add_to_cart">Sepete Ekle</string>
     <string name="stock_amount">Stok Miktarı</string>
     <string name="one_amount_price">Adet Fiyatı</string>
+    <string name="sale_price">Satış Fiyatı</string>
     <string name="text_price">%1$s TL</string>
     <string name="text_amount">%1$s Adet</string>
     <!-- Strings used for fragments for navigation -->
@@ -69,4 +70,5 @@
     <string name="hint_discount_code">İndirim Kodu</string>
     <string name="hint_total_price">Toplam Tutar</string>
     <string name="_0">0</string>
+    <string name="betan_stok_takip">Betan Stok Takip</string>
 </resources>

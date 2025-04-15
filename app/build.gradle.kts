@@ -67,12 +67,12 @@ dependencies {
 
     implementation(libs.hilt)
     implementation(libs.androidx.security.crypto.ktx)
+    implementation(libs.androidx.gridlayout)
     ksp(libs.hilt.compiler)
 
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
-
     implementation(libs.gson)
 
     // region Barcode

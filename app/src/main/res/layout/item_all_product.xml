@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/margin_horizontal_in_container"
+    android:layout_marginBottom="@dimen/margin_standard"
+    android:background="@drawable/bg_item_view"
+    android:backgroundTint="#E6E1E6"
+    android:backgroundTintMode="add"
+>
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:textAppearance="@style/Typography.Basic.XLarge.Mass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Marka Adı" />
+
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+        android:layout_marginTop="@dimen/margin_standard"
+        android:textAppearance="@style/Typography.Basic.Body.Default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewName"
+        tools:text="İçerik"
+
+        ></TextView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal_in_container_recycler_item"
+        android:layout_marginTop="@dimen/margin_standard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewDescription">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:text="@string/stock_amount"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewStockCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:gravity="end"
+                tools:text="15 Adet" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="70dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:text="@string/one_amount_price"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewOneAmountPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:gravity="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewStockCount"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+                tools:text="150 Tl" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:text="@string/sale_price"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewSalePrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="@dimen/margin_standard"
+                android:gravity="end"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/textViewStockCount"
+                app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+                tools:text="150 Tl" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,5 +24,41 @@
         android:id="@+id/showStockFragment"
         android:name="com.betan.betanstoktakip.presentation.showstock.ShowStockFragment"
         android:label="fragment_show_stock"
-        tools:layout="@layout/fragment_show_stock" />
+        tools:layout="@layout/fragment_show_stock" >
+        <action
+            android:id="@+id/action_showStockFragment_to_showAllProductFragment"
+            app:destination="@id/showAllProductFragment" />
+        <action
+            android:id="@+id/action_showStockFragment_to_showSellFragment"
+            app:destination="@id/showSellFragment" />
+        <action
+            android:id="@+id/action_showStockFragment_to_exportProductFragment"
+            app:destination="@id/exportProductFragment" />
+        <action
+            android:id="@+id/action_showStockFragment_to_importProductFragment"
+            app:destination="@id/importProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/showAllProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.showAllProduct.ShowAllProductFragment"
+        android:label="fragment_show_all_product"
+        tools:layout="@layout/fragment_show_all_product" />
+    <fragment
+        android:id="@+id/showSellFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.showSellFragment.ShowSellFragment"
+        android:label="fragment_show_sell"
+        tools:layout="@layout/fragment_show_sell">
+
+    </fragment>
+    <fragment
+        android:id="@+id/exportProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.exportProduct.ExportProductFragment"
+        android:label="fragment_export_product"
+        tools:layout="@layout/fragment_export_product" />
+    <fragment
+        android:id="@+id/importProductFragment"
+        android:name="com.betan.betanstoktakip.presentation.showstock.importProduct.ImportProductFragment"
+        android:label="fragment_import_product"
+        tools:layout="@layout/fragment_import_product" />
+
 </navigation>

@@ -4,43 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.main.MainFragment">
+    android:visibility="visible"
+    tools:context=".presentation.main.MainFragment"
+    tools:visibility="visible">
 
+    <!-- Container for Toolbar and Logout Button -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerTopBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/height_top_bar"
+        android:layout_height="60dp"
         android:background="@color/primaryColor"
-        android:elevation="3dp"
         android:paddingHorizontal="@dimen/padding_horizontal_top_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
+        <!-- Toolbar -->
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_horizontal_text_view_in_top_bar"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textColor="#fff"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/primaryColor"
+            app:titleCentered="true"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_constraintBottom_toBottomOf="@id/containerTopBar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_back_button"
+            app:navigationIconTint="@color/white"
+            app:title="Betan Stok Takip"
+            app:titleTextColor="@color/white" />
 
+        <!-- Çıkış Yap Butonu -->
         <TextView
             android:id="@+id/textViewLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="Çıkış Yap"
-            android:textColor="#fff"
+            android:textColor="@color/white"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- Fragment Area -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -51,8 +62,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerTopBar"
-        app:navGraph='@navigation/nav_graph_main' />
+        app:navGraph="@navigation/nav_graph_main" />
 
+    <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

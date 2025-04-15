@@ -3,20 +3,20 @@ package com.betan.betanstoktakip.domain.model
 import com.google.firebase.Timestamp
 
 data class SoldProductsModel(
-    val date: Timestamp,
-    val totalPrice: Double,
-    val paidPrice: Double,
-    val discountCode: String,
-    val discountRate: Double,
-    val items: List<Item>,
+    var date: Timestamp? = null,
+    var totalPrice: Double = 0.0,
+    var paidPrice: Double = 0.0,
+    var discountCode: String = "",
+    var discountRate: Double = 0.0,
+    var items: List<Item> = emptyList()
 ) {
     data class Item(
-        val barcode: String,
-        val name: String,
-        val brandName: String,
-        val amount: Int,
-        val salePrice: Double,
-        val totalPrice: Double,
-        val paidPrice: Double,
+        var barcode: String = "",
+        var name: String = "",
+        var brandName: String = "",
+        var amount: Int = 0,
+        var salePrice: Double = 0.0,
+        var totalPrice: Double = 0.0,
+        var paidPrice: Double = 0.0
     )
 }
