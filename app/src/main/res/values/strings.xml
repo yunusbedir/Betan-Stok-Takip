@@ -62,6 +62,7 @@
     <string name="hint_stock_amount">Stok Adeti</string>
     <string name="hint_purchase_price">Alış Fiyatı</string>
     <string name="button_text_add_product">Ürünü Ekle</string>
+    <string name="button_text_update_product">Ürünü Güncelle</string>
     <string name="hint_sale_price">Satış Fiyatı</string>
     <string name="text_total_price_shopping_cart">Toplam Fiyat</string>
     <string name="text_button_sell_shopping_cart">Satış Yap</string>

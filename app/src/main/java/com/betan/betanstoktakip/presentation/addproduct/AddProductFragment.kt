@@ -35,7 +35,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
         override fun onFingerprintAuthenticationSuccess() {
             viewModel.invoke(
                 AddProductContract.Action.AddProduct(
-                    barcode = binding.editTextSearch.text.orEmpty(),
+                    barcode = binding.editTextBarcode.text.orEmpty(),
                     name = binding.editTextName.text.orEmpty(),
                     brandName = "",
                     stockAmount = binding.editTextStockAmount.text.orEmpty().toIntOrZero(),
@@ -53,12 +53,6 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
 
         }
 
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.autoCompleteTextView.setupWithFirestoreBrands(requireContext()) { selectedBrand ->
-            Toast.makeText(requireContext(), "Seçilen: ${selectedBrand.brandName}", Toast.LENGTH_SHORT).show()
-        }
     }
 
     override fun onResume() {
@@ -81,7 +75,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
                 if (MainContract.biometricAuthenticationSucceeded) {
                     viewModel.invoke(
                         AddProductContract.Action.AddProduct(
-                            barcode = binding.editTextSearch.text.orEmpty(),
+                            barcode = binding.editTextBarcode.text.orEmpty(),
                             name = binding.editTextName.text.orEmpty(),
                             brandName = "",
                             stockAmount = binding.editTextStockAmount.text.orEmpty().toIntOrZero(),
@@ -101,7 +95,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
                     )
                 }
             }
-            textInputLayoutSearch.setEndIconOnClickListener {
+            textInputBarcode.setEndIconOnClickListener {
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA)
             }
         }
@@ -117,7 +111,7 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
     override fun barcodeActivityResult(barcode: String?) {
         super.barcodeActivityResult(barcode)
         barcode?.let {
-            binding.editTextSearch.setText(it)
+            binding.editTextBarcode.setText(it)
         }
     }
 
@@ -147,8 +141,9 @@ class AddProductFragment : BaseFragment<FragmentAddProductBinding>(
 
     private fun clearAll() {
         with(binding) {
-            editTextSearch.setText("")
+            editTextBarcode.setText("")
             editTextName.setText("")
+            editTextBrandName.setText("")
             editTextStockAmount.setText("1")
             editTextPurchasePrice.setText("")
             editTextSalePrice.setText("")

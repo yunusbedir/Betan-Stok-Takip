@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
@@ -13,6 +14,7 @@ import com.betan.betanstoktakip.core.extensions.orEmpty
 import com.betan.betanstoktakip.core.extensions.putMoneyDots
 import com.betan.betanstoktakip.core.extensions.toMoney
 import com.betan.betanstoktakip.databinding.FragmentShowProductBinding
+import com.betan.betanstoktakip.domain.model.ProductModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -62,7 +64,22 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
                 ShowProductContract.Action.AddToCart
             )
         }
-    }
+        containerResult.setOnClickListener {
+            val product = ProductModel(
+                barcode = viewModel.uiState.value.barcode,
+                name = viewModel.uiState.value.name,
+                brandName = viewModel.uiState.value.brandName,
+                stockAmount = viewModel.uiState.value.stockAmount,
+                salePrice = viewModel.uiState.value.oneAmountPrice,
+                purchasePrice = 0.0 // Eğer varsa UIState içinde bunu da set et
+            )
+
+            val action = ShowProductFragmentDirections
+                .actionShowProductFragmentToUpdateProductFragment(product)
+
+            findNavController().navigate(action)
+        }
+        }
 
     override fun permissionResult(permission: String, isGranted: Boolean) {
         super.permissionResult(permission, isGranted)

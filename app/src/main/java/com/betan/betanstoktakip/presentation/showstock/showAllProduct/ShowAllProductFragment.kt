@@ -13,32 +13,32 @@ import dagger.hilt.android.AndroidEntryPoint
 class ShowAllProductFragment : BaseFragment<FragmentShowAllProductBinding>(
     bindingInflater = FragmentShowAllProductBinding::inflate
 ) {
-    private val viewModel: ShowStockViewModel by viewModels()
+    private val viewModel: ShowAllProductViewModel by viewModels()
     private val productList = arrayListOf<ProductModel>()
-    private lateinit var productAdapter: AllProductAdapter // Adapter'i tanımladık
+    private lateinit var productAdapter: AllProductAdapter
 
     override fun setupViews(savedInstanceState: Bundle?) {
-        setupRecyclerView() // RecyclerView ayarla
-        initObserver() // LiveData observer ekle
-        viewModel.getAllProduct() // Verileri getir
+        setupRecyclerView()
+        initObserver()
+        viewModel.getAllProduct()
     }
 
     private fun setupRecyclerView() {
-        productAdapter = AllProductAdapter(productList) // Adapter'i başlat
+        productAdapter = AllProductAdapter(productList)
         binding.recyclerView.apply {
             adapter = productAdapter
-            layoutManager = LinearLayoutManager(requireContext()) // Dikey listeleme
+            layoutManager = LinearLayoutManager(requireContext())
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun initObserver() {
         viewModel.getAllProductsLiveData.observe(viewLifecycleOwner) { result ->
-            println(" Ürünler: ${result.size}") // Log ile kontrol et
+            println(" Ürünler: ${result.size}")
 
             productList.clear()
-            productList.addAll(result.filterNotNull()) // Null olanları filtrele
-            productAdapter.notifyDataSetChanged() // RecyclerView'i güncelle
+            productList.addAll(result.filterNotNull())
+            productAdapter.notifyDataSetChanged()
         }
     }
 

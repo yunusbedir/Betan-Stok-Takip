@@ -1,8 +1,10 @@
 package com.betan.betanstoktakip.presentation.showproduct
 
 import com.betan.betanstoktakip.core.base.BaseViewModel
+import com.betan.betanstoktakip.core.extensions.orZero
 import com.betan.betanstoktakip.domain.usecases.product.AddToCartUseCase
 import com.betan.betanstoktakip.domain.usecases.product.GetProductUseCase
+import com.betan.betanstoktakip.domain.usecases.product.UpdateProductUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -12,6 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ShowProductViewModel @Inject constructor(
     private val getProductUseCase: GetProductUseCase,
+
     private val addToCartUseCase: AddToCartUseCase
 ) : BaseViewModel() {
 
@@ -25,6 +28,7 @@ class ShowProductViewModel @Inject constructor(
             is ShowProductContract.Action.AddToCart -> addToCart()
             ShowProductContract.Action.MinusCartProduct -> minusCartProduct()
             ShowProductContract.Action.PlusCartProduct -> plusCartProduct()
+
         }
     }
 
@@ -61,15 +65,21 @@ class ShowProductViewModel @Inject constructor(
         getProductUseCase.action(params) { result ->
             _uiState.update { state ->
                 state.copy(
-                    barcode = result.barcode,
-                    name = result.name,
-                    stockAmount = result.stockAmount,
-                    oneAmountPrice = result.salePrice,
+                    barcode = result.barcode.orEmpty(),
+                    name = result.name.orEmpty(),
+                    brandName = result.brandName.orEmpty(),
+                    stockAmount = result.stockAmount.orZero(),
+                    oneAmountPrice = result.salePrice.orZero(),
+                    purchasePrice = result.purchasePrice.orZero(),
                     amount = 1,
+                    productModel = result
                 )
             }
         }
     }
+
+
+
 
     private fun addToCart() {
         _uiState.value.let { state ->
@@ -89,4 +99,5 @@ class ShowProductViewModel @Inject constructor(
             }
         }
     }
+
 }

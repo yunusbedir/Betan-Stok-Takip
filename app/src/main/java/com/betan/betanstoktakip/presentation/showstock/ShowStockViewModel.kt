@@ -15,15 +15,12 @@ import javax.inject.Inject
 @HiltViewModel
 class ShowStockViewModel @Inject constructor(
     private val getBrandsUseCase: GetBrandsUseCase,
-    private val getAllProductsUseCase: GetAllProductsUseCase,
     private val getShowSellUseCase: GetShowSellUseCase
 ) : BaseViewModel() {
 
     private val _getBrandLiveData = MutableLiveData<List<BrandModel?>>()
-    private val _getAllProductsLiveData = MutableLiveData<List<ProductModel?>>()
     private val _getSalesLiveData = MutableLiveData<List<SoldProductsModel?>>()
-    val getAllProductsLiveData: LiveData<List<ProductModel?>>
-        get() = _getAllProductsLiveData
+
     val getBrandLiveData: LiveData<List<BrandModel?>>
         get() = _getBrandLiveData
     val getSalesLiveData: LiveData<List<SoldProductsModel?>>
@@ -33,7 +30,6 @@ class ShowStockViewModel @Inject constructor(
         when (action) {
             ShowStockContract.Action.GetStock -> getStock()
             ShowStockContract.Action.GetBrands -> getBrand()
-            ShowStockContract.Action.GetProducts -> getAllProduct()
             ShowStockContract.Action.GetSales -> getSales()
         }
     }
@@ -50,11 +46,7 @@ class ShowStockViewModel @Inject constructor(
         }
     }
 
-    fun getAllProduct() {
-        getAllProductsUseCase.action(Unit) { result ->
-            _getAllProductsLiveData.value = result
-        }
-    }
+
 
     private fun getStock() {}
 

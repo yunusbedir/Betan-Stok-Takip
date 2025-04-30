@@ -44,22 +44,22 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
         binding.apply {
             initObserver()
             viewModel.getBrand()
-            autoCompleteTextView.click{
-                val adapter = ArrayAdapter(
-                    requireContext(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    brandList
-                )
-                autoCompleteTextView.setAdapter(adapter)
-            }
+
             binding.buttonShowAllProduct.setOnClickListener {
                 findNavController().navigate(R.id.showAllProductFragment)
             }
             binding.buttonShowSales.setOnClickListener {
                 findNavController().navigate(R.id.showSellFragment)
             }
-            binding.buttonExportProduct.setOnClickListener {  }
-            binding.buttonImportProduct.setOnClickListener {  }
+            binding.buttonExportProduct.setOnClickListener {
+                findNavController().navigate(R.id.exportProductFragment)
+            }
+            binding.buttonImportProduct.setOnClickListener {
+                findNavController().navigate(R.id.importProductFragment)
+            }
+            binding.buttonFindProduct.setOnClickListener {
+                
+            }
 
         }
     }
