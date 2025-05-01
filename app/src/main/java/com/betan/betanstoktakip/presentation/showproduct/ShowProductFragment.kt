@@ -65,21 +65,16 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
             )
         }
         containerResult.setOnClickListener {
-            val product = ProductModel(
+            val barcode = ProductModel(
                 barcode = viewModel.uiState.value.barcode,
-                name = viewModel.uiState.value.name,
-                brandName = viewModel.uiState.value.brandName,
-                stockAmount = viewModel.uiState.value.stockAmount,
-                salePrice = viewModel.uiState.value.oneAmountPrice,
-                purchasePrice = 0.0 // Eğer varsa UIState içinde bunu da set et
             )
 
             val action = ShowProductFragmentDirections
-                .actionShowProductFragmentToUpdateProductFragment(product)
+                .actionShowProductFragmentToUpdateProductFragment(barcode)
 
             findNavController().navigate(action)
         }
-        }
+    }
 
     override fun permissionResult(permission: String, isGranted: Boolean) {
         super.permissionResult(permission, isGranted)
@@ -104,7 +99,8 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
             textViewAmount.text = uiState.amount.toString()
             textViewTitle.text = uiState.name
             textViewPrice.text = uiState.oneAmountPrice.toMoney()
-            textViewStockCount.text = getString(R.string.text_amount, uiState.stockAmount.toString())
+            textViewStockCount.text =
+                getString(R.string.text_amount, uiState.stockAmount.toString())
             editTextTotalPrice.setText(uiState.totalPrice.toMoney())
 
             editTextTotalPrice.isVisible = uiState.isEnableAddToCart

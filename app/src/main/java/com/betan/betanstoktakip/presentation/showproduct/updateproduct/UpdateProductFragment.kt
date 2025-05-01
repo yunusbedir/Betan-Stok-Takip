@@ -1,15 +1,13 @@
 package com.betan.betanstoktakip.presentation.showproduct.updateproduct
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
+import com.betan.betanstoktakip.core.extensions.orEmpty
 import com.betan.betanstoktakip.databinding.FragmentUpdateProductBinding
 import com.betan.betanstoktakip.domain.model.ProductModel
-import com.betan.betanstoktakip.presentation.showproduct.ShowProductContract
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +20,8 @@ class UpdateProductFragment : BaseFragment<FragmentUpdateProductBinding>(
 
 
     private val args: UpdateProductFragmentArgs by navArgs()
-    private val product = args.product
+    private val product
+        get() = args.product
 
     override fun setupViews(savedInstanceState: Bundle?) {
         updateProductViewModel.invoke(UpdateProductContract.Action.LoadProduct(product.barcode.orEmpty()))
@@ -33,11 +32,13 @@ class UpdateProductFragment : BaseFragment<FragmentUpdateProductBinding>(
     private fun setupListeners() {
         binding.buttonUpdateProduct.setOnClickListener {
             val updatedProduct = ProductModel(
+                barcode = binding.editTextBarcode.text.orEmpty(),
                 name = binding.editTextName.text.toString(),
                 brandName = binding.editTextBrandName.text.toString(),
                 stockAmount = binding.editTextStockAmount.text.toString().toIntOrNull() ?: 0,
                 salePrice = binding.editTextSalePrice.text.toString().toDoubleOrNull() ?: 0.0,
-                purchasePrice = binding.editTextPurchasePrice.text.toString().toDoubleOrNull() ?: 0.0
+                purchasePrice = binding.editTextPurchasePrice.text.toString().toDoubleOrNull()
+                    ?: 0.0
             )
 
             updateProductViewModel.invoke(UpdateProductContract.Action.UpdateProduct(updatedProduct))

@@ -3,6 +3,7 @@ package com.betan.betanstoktakip.domain.usecases.product
 import com.betan.betanstoktakip.core.base.domain.UseCase
 import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.ProductModel
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -14,16 +15,8 @@ class UpdateProductUseCase @Inject constructor() : UseCase<UpdateProductUseCase.
     override suspend fun run(params: Params) {
         Firebase.firestore.collection(FirebaseCollections.PRODUCTS)
             .document(params.product.barcode.orEmpty())
-            .set(params.product)
+            .set(params.product, SetOptions.merge())
             .await()
-        params.oldProductBarcodeToDelete?.let { barcode ->
-            if (barcode != params.product.barcode) {
-                firestore.collection(FirebaseCollections.PRODUCTS)
-                    .document(barcode)
-                    .delete()
-                    .await()
-            }
-        }
     }
 
 
