@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.betan.betanstoktakip.core.base.domain.UseCase
 import com.betan.betanstoktakip.core.base.domain.UseCaseState
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,11 +23,16 @@ abstract class BaseViewModel : ViewModel() {
     val failState: Flow<String>
         get() = _failState.receiveAsFlow()
 
+    protected val _successState = Channel<String>()
+    val successState: Flow<String>
+        get() = _successState.receiveAsFlow()
+
     protected fun showProgress() {
         if (_progressState.value.not()) {
             _progressState.value = true
         }
     }
+
 
     protected fun hideProgress() {
         if (_progressState.value) {

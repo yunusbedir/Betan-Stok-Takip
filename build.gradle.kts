@@ -5,4 +5,6 @@ plugins {
     alias(libs.plugins.devtoolsKsp) apply false
     alias(libs.plugins.hiltAndroid) apply false
     alias(libs.plugins.googleServices) apply false
+    alias(libs.plugins.navigationSafeArgs) apply false
+
 }

@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/textViewName"
         tools:text="İçerik"
 
-        ></TextView>
+        />
 
 
     <LinearLayout

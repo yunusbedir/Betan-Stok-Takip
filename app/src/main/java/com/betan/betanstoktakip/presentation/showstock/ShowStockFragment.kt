@@ -1,5 +1,6 @@
 package com.betan.betanstoktakip.presentation.showstock
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
@@ -21,6 +22,8 @@ import com.betan.betanstoktakip.domain.firebase.FirebaseCollections
 import com.betan.betanstoktakip.domain.model.BrandModel
 import com.betan.betanstoktakip.domain.model.ProductModel
 import com.betan.betanstoktakip.presentation.addproduct.AddProductContract
+import com.betan.betanstoktakip.presentation.updateproduct.UpdateProductContract
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObjects
@@ -44,22 +47,29 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
         binding.apply {
             initObserver()
             viewModel.getBrand()
-            autoCompleteTextView.click{
-                val adapter = ArrayAdapter(
-                    requireContext(),
-                    android.R.layout.simple_dropdown_item_1line,
-                    brandList
-                )
-                autoCompleteTextView.setAdapter(adapter)
-            }
+            binding.buttonFindProduct.setOnClickListener {
+                    val barcode = binding.editTextBarcode.text.orEmpty().trim()
+                    if (barcode.isNotEmpty()) {
+                        viewModel.invoke(ShowStockContract.Action.GetProduct(barcode))
+                    } else {
+                        Toast.makeText(requireContext(), "Lütfen barkod girin", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+
+
             binding.buttonShowAllProduct.setOnClickListener {
                 findNavController().navigate(R.id.showAllProductFragment)
             }
             binding.buttonShowSales.setOnClickListener {
                 findNavController().navigate(R.id.showSellFragment)
             }
-            binding.buttonExportProduct.setOnClickListener {  }
-            binding.buttonImportProduct.setOnClickListener {  }
+            binding.buttonExportProduct.setOnClickListener {
+                findNavController().navigate(R.id.exportProductFragment)
+            }
+            binding.buttonImportProduct.setOnClickListener {
+                findNavController().navigate(R.id.importProductFragment)
+            }
 
         }
     }
@@ -78,16 +88,36 @@ class ShowStockFragment : BaseFragment<FragmentShowStockBinding>(
 
     }
 
-    private fun initObserver(){
-        viewModel.getBrandLiveData.observe(viewLifecycleOwner){ result->
+    @SuppressLint("SetTextI18n")
+    private fun initObserver() {
+        viewModel.getBrandLiveData.observe(viewLifecycleOwner) { result ->
             brandList.clear()
-            result.forEach{ brand->
+            result.forEach { brand ->
                 brandList.add(brand?.brandName.toString())
             }
         }
 
+        viewModel.getProductLiveData.observe(viewLifecycleOwner) { productList ->
+            productList.firstOrNull()?.let { product ->
+                binding.textViewProductName.text = "Ürün Adı: ${product.name.orEmpty()}"
+                binding.textViewBrand.text = "Marka Adı: ${product.brandName.orEmpty()}"
+                binding.textViewStock.text = "Stok Miktarı: ${product.stockAmount ?: 0}"
+                binding.textViewPurchase.text = "Alış Fiyatı: ${product.purchasePrice ?: 0.0}"
+                binding.textViewSale.text = "Satış Fiyatı: ${product.salePrice ?: 0.0}"
+
+                binding.textViewProductName.visibility = View.VISIBLE
+                binding.textViewBrand.visibility = View.VISIBLE
+                binding.textViewStock.visibility = View.VISIBLE
+                binding.textViewPurchase.visibility = View.VISIBLE
+                binding.textViewSale.visibility = View.VISIBLE
+
+            }
+
+        }
 
     }
+
+
 
 
     override fun onResume() {

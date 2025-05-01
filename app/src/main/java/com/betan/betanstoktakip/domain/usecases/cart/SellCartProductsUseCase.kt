@@ -34,11 +34,11 @@ class SellCartProductsUseCase @Inject constructor(
             .await().documents.onEach { snapsShot ->
                 val item = snapsShot.toObject<ProductModel>()
                 item?.copy(
-                    stockAmount = item.stockAmount - params.items.filter {
+                    stockAmount = item.stockAmount.orZero() - params.items.filter {
                         it.barcode == item.barcode
                     }.sumOf { it.amount }.orZero()
                 )?.let {
-                    val ref = db.collection(FirebaseCollections.PRODUCTS).document(it.barcode)
+                    val ref = db.collection(FirebaseCollections.PRODUCTS).document(it.barcode.orEmpty())
                     batch.set(ref, it)
                 }
             }

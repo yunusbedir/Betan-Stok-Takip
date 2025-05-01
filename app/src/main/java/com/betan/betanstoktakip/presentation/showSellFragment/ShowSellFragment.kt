@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showstock.showSellFragment
+package com.betan.betanstoktakip.presentation.showSellFragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle

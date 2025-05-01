@@ -123,11 +123,17 @@ abstract class BaseFragment<VBinding : ViewBinding>(
 
     protected open fun collectFailState(fail: String) {
         context?.let { safeContext ->
+            val message = if (fail.isBlank()) {
+                "Aradığınız Kriterlere Uyan Bir Sonuç Bulunamadı."
+            } else {
+                fail
+            }
+
             MaterialAlertDialogBuilder(safeContext)
                 .setCancelable(true)
                 .setIcon(R.drawable.ic_delete)
                 .setTitle("Uyarı")
-                .setMessage(fail)
+                .setMessage(message)
                 .setPositiveButton("Tamam") { dialog, _ ->
                     dialog.dismiss()
                 }.create()

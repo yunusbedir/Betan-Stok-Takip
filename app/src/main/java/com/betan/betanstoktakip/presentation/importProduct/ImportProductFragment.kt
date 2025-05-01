@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showstock.importProduct
+package com.betan.betanstoktakip.presentation.importProduct
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

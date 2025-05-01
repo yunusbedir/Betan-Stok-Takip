@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.betan.betanstoktakip.R
 import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.click
@@ -13,6 +14,7 @@ import com.betan.betanstoktakip.core.extensions.orEmpty
 import com.betan.betanstoktakip.core.extensions.putMoneyDots
 import com.betan.betanstoktakip.core.extensions.toMoney
 import com.betan.betanstoktakip.databinding.FragmentShowProductBinding
+import com.betan.betanstoktakip.domain.model.ProductModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -62,6 +64,16 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
                 ShowProductContract.Action.AddToCart
             )
         }
+        containerResult.setOnClickListener {
+            val barcode = ProductModel(
+                barcode = viewModel.uiState.value.barcode,
+            )
+
+            val action = ShowProductFragmentDirections
+                .actionShowProductFragmentToUpdateProductFragment(barcode)
+
+            findNavController().navigate(action)
+        }
     }
 
     override fun permissionResult(permission: String, isGranted: Boolean) {
@@ -87,7 +99,8 @@ class ShowProductFragment : BaseFragment<FragmentShowProductBinding>(
             textViewAmount.text = uiState.amount.toString()
             textViewTitle.text = uiState.name
             textViewPrice.text = uiState.oneAmountPrice.toMoney()
-            textViewStockCount.text = getString(R.string.text_amount, uiState.stockAmount.toString())
+            textViewStockCount.text =
+                getString(R.string.text_amount, uiState.stockAmount.toString())
             editTextTotalPrice.setText(uiState.totalPrice.toMoney())
 
             editTextTotalPrice.isVisible = uiState.isEnableAddToCart
