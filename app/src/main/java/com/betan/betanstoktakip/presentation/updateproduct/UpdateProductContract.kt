@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showproduct.updateproduct
+package com.betan.betanstoktakip.presentation.updateproduct
 
 import com.betan.betanstoktakip.domain.model.ProductModel
 
@@ -6,7 +6,8 @@ import com.betan.betanstoktakip.domain.model.ProductModel
 object UpdateProductContract {
     sealed interface Action{
         data class SetInitialProduct(val product: ProductModel) : Action
-        data class UpdateProduct(val updatedProduct: ProductModel , val oldBarcode: String? = null ) : Action
+        data class UpdateProduct(val updatedProduct: ProductModel , val oldBarcode: String? = null ) :
+            Action
         data class LoadProduct(val barcode: String) : Action
     }
     data class UiState(

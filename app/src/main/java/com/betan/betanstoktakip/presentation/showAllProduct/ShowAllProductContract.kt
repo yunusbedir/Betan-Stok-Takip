@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showstock.showAllProduct
+package com.betan.betanstoktakip.presentation.showAllProduct
 
 object ShowAllProductContract {
     sealed interface Action {

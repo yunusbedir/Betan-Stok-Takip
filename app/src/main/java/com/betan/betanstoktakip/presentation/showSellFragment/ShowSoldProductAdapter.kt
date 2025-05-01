@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showstock.showSellFragment
+package com.betan.betanstoktakip.presentation.showSellFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showproduct.updateproduct
+package com.betan.betanstoktakip.presentation.updateproduct
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
@@ -8,6 +8,7 @@ import com.betan.betanstoktakip.core.base.BaseFragment
 import com.betan.betanstoktakip.core.extensions.orEmpty
 import com.betan.betanstoktakip.databinding.FragmentUpdateProductBinding
 import com.betan.betanstoktakip.domain.model.ProductModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,17 +32,26 @@ class UpdateProductFragment : BaseFragment<FragmentUpdateProductBinding>(
 
     private fun setupListeners() {
         binding.buttonUpdateProduct.setOnClickListener {
-            val updatedProduct = ProductModel(
-                barcode = binding.editTextBarcode.text.orEmpty(),
-                name = binding.editTextName.text.toString(),
-                brandName = binding.editTextBrandName.text.toString(),
-                stockAmount = binding.editTextStockAmount.text.toString().toIntOrNull() ?: 0,
-                salePrice = binding.editTextSalePrice.text.toString().toDoubleOrNull() ?: 0.0,
-                purchasePrice = binding.editTextPurchasePrice.text.toString().toDoubleOrNull()
-                    ?: 0.0
-            )
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Ürünü Güncelle")
+                .setMessage("Ürünü güncellemek istediğinize emin misiniz, Yapılan değişiklikler geri alınmaz?")
+                .setNegativeButton("Hayır") { dialog, _ ->
+                    dialog.dismiss()
+                }
+                .setPositiveButton("Evet") { dialog, _ ->
+                    val updatedProduct = ProductModel(
+                        barcode = binding.editTextBarcode.text.orEmpty(),
+                        name = binding.editTextName.text.toString(),
+                        brandName = binding.editTextBrandName.text.toString(),
+                        stockAmount = binding.editTextStockAmount.text.toString().toIntOrNull() ?: 0,
+                        salePrice = binding.editTextSalePrice.text.toString().toDoubleOrNull() ?: 0.0,
+                        purchasePrice = binding.editTextPurchasePrice.text.toString().toDoubleOrNull() ?: 0.0
+                    )
 
-            updateProductViewModel.invoke(UpdateProductContract.Action.UpdateProduct(updatedProduct))
+                    updateProductViewModel.invoke(UpdateProductContract.Action.UpdateProduct(updatedProduct))
+                    dialog.dismiss()
+                }
+                .show()
         }
     }
 

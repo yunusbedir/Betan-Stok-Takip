@@ -1,4 +1,4 @@
-package com.betan.betanstoktakip.presentation.showproduct.updateproduct
+package com.betan.betanstoktakip.presentation.updateproduct
 
 import androidx.lifecycle.viewModelScope
 import com.betan.betanstoktakip.core.base.BaseViewModel
